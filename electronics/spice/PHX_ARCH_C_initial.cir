@@ -89,7 +89,9 @@ IN_PRE 0 pren {ILOAD+IPROG+IREG}
 .step param ILOAD list 0 4.7m 8m 10m
 .step param VZ list 22.8 24 25.6
 
-.tran 0 300m 200m 20u startup
+* Retain the full transient record so .meas FROM/TO uses absolute simulation time.
+* The 250..300 ms interval below remains the steady-state measurement window.
+.tran 0 300m 0 20u startup
 
 * Preregulator measurements
 .meas TRAN PREP_AVG AVG V(prep) FROM 250m TO 300m
