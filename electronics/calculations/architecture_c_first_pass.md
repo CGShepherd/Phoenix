@@ -102,47 +102,128 @@ first-pass values.
 The preregulator current design range should therefore be regarded as
 approximately 15...21 mA per rail rather than the earlier 5...10 mA estimate.
 
-## Zener-feed current with 4.7 kΩ
+## Zener feed network
 
-With a nominal 24 V Zener:
+The initial 4.7 kΩ Zener-feed resistor is replaced provisionally by:
+
+`RZ = 3.9 kΩ`
+
+The selected provisional Zener is:
+
+`Vishay BZX55C24`
+
+The BZX55C24 is characterised at approximately 5 mA, which aligns well with
+the intended operating region of this preregulator.
+
+For the nominal 24 V Zener voltage:
 
 At 48 V raw:
 
-`IRZ = (48 − 24) / 4.7k = 5.11 mA`
+`IRZ = (48 − 24) / 3.9k = 6.15 mA`
 
 At 55 V raw:
 
-`IRZ = (55 − 24) / 4.7k = 6.60 mA`
+`IRZ = (55 − 24) / 3.9k = 7.95 mA`
 
 At 60 V raw:
 
-`IRZ = (60 − 24) / 4.7k = 7.66 mA`
+`IRZ = (60 − 24) / 3.9k = 9.23 mA`
 
-Using the TIP41C/TIP42C minimum current gain assumption of beta = 15:
-
-At 20.42 mA emitter current:
+Using the conservative pass-transistor current-gain assumption of beta = 15
+and the 20.42 mA stress emitter current:
 
 `IB ≈ 20.42 / 15 = 1.36 mA`
 
-Therefore at the lowest raw-rail condition:
+At nominal Zener voltage and 48 V raw:
 
-`IZ ≈ 5.11 − 1.36 = 3.75 mA`
+`IZ ≈ 6.15 − 1.36 = 4.79 mA`
 
-This remains plausible but is no longer generous. The selected 24 V Zener must
-therefore be checked for dynamic impedance, knee current, tolerance and noise
-at approximately 3.5...8 mA.
+This places the worst nominal operating point close to the BZX55C24 5 mA
+characterisation current.
 
-The 4.7 kΩ feed resistor remains provisional pending that component
-down-selection.
+### Zener-voltage tolerance
+
+The BZX55C24 Zener-voltage range is approximately 22.8...25.6 V at its
+specified test current.
+
+At the minimum raw rail, maximum Zener voltage and maximum preregulator load:
+
+`IRZ = (48 − 25.6) / 3.9k = 5.74 mA`
+
+With beta = 15:
+
+`IZ ≈ 5.74 − 1.36 = 4.38 mA`
+
+At the minimum raw rail, minimum Zener voltage and the same load:
+
+`IRZ = (48 − 22.8) / 3.9k = 6.46 mA`
+
+`IZ ≈ 6.46 − 1.36 = 5.10 mA`
+
+The approximate worst-case Zener-current range at the low-line/high-load
+corner is therefore:
+
+`IZ ≈ 4.4...5.1 mA`
+
+This is materially better aligned with the selected Zener than the original
+4.7 kΩ feed resistor.
+
+The 3.9 kΩ value is therefore selected provisionally, subject to SPICE and
+bench verification.
 
 ## Feed-resistor dissipation
 
-At 60 V raw:
+The maximum first-pass feed-resistor dissipation occurs at high raw voltage
+and low Zener voltage.
 
-`PRZ ≈ (60 − 24)^2 / 4.7k = 0.276 W`
+For 60 V raw and VZ = 22.8 V:
 
-A 0.5 W resistor provides poor conservative derating. A ≥0.6 W component or a
-series resistor pair should therefore be considered for the prototype.
+`PRZ ≈ (60 − 22.8)^2 / 3.9k ≈ 0.355 W`
+
+A 0.5 W component does not provide desirable thermal derating at this operating
+point.
+
+The provisional component requirement is therefore:
+
+`RZ = 3.9 kΩ, ≥1 W`
+
+A single 1 W resistor or an electrically equivalent series pair may be used
+subject to PCB layout and thermal considerations.
+
+## Zener dissipation
+
+At 60 V raw and a nominal 24 V Zener:
+
+`IRZ = 9.23 mA`
+
+Allowing approximately 1.36 mA base current at the stress load:
+
+`IZ ≈ 7.87 mA`
+
+The corresponding nominal Zener dissipation is approximately:
+
+`PZ ≈ 24 × 0.00787 ≈ 0.189 W`
+
+Across the first-pass Zener-voltage tolerance corners, calculated Zener
+dissipation remains approximately 0.19 W. Additional thermal and device
+tolerances will be assessed separately rather than folded into this nominal
+electrical calculation.
+
+This remains below the BZX55C24 nominal power rating, but final thermal
+verification must account for PCB mounting, lead length, ambient temperature
+and the Zener's positive temperature coefficient.
+
+## Provisional Zener-network down-selection
+
+The current Architecture C preregulator down-selection is:
+
+- DZP/DZN: Vishay BZX55C24;
+- RZP/RZN: 3.9 kΩ, ≥1 W;
+- CZP/CZN: 47 µF provisional.
+
+The Zener voltage and feed resistor remain subject to tolerance simulation,
+thermal verification and bench measurement before being baselined.
+
 
 ## Pass-transistor dissipation
 
@@ -176,8 +257,8 @@ thermal resistance must be explicitly verified.
 5. Preregulator design current is approximately 15...21 mA per rail.
 6. TIP41C/TIP42C dissipation reaches approximately 0.75 W at the 60 V / stress
    corner and requires deliberate thermal design.
-7. The 4.7 kΩ Zener feed resistor is still credible but now requires
-   verification against the selected Zener at low raw voltage, minimum beta and
-   maximum load.
-8. Vendor device models and tolerance sweeps are required before the
-   preregulator component values are baselined.
+7. The provisional Zener network is BZX55C24 with a 3.9 kΩ, ≥1 W feed
+   resistor. Worst-case low-line Zener current is approximately 4.4...5.1 mA.
+8. Zener tolerance, temperature behaviour, vendor transistor models and
+   regulator models must be verified before the preregulator values are
+   baselined.
