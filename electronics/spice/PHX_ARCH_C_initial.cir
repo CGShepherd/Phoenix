@@ -1,0 +1,52 @@
+* Project Phoenix - Architecture C initial LTspice deck
+* Purpose: topology sanity check before vendor-macromodel verification.
+* Raw rails: +/-48..60 V. 100 Hz ripple parameterised.
+* NOTE: LM317/LM337 are represented here by simple behavioural post-regulators.
+* Replace XREGP/XREGN with the selected vendor macromodels for sign-off.
+
+.param VRAW=55
+.param RIPPLE=2
+.param FLINE=100
+.param RZ=4.7k
+.param CZ=47u
+.param ILOAD=4.7m
+
+VRAW_P rawp 0 SINE({VRAW} {RIPPLE} {FLINE})
+VRAW_N rawn 0 SINE({-VRAW} {RIPPLE} {FLINE})
+
+* Positive preregulator
+RZP rawp zbp {RZ}
+DZP zbp 0 DZ24
+CZP zbp 0 {CZ}
+QPASS_P rawp zbp prep TIP41C_P
+
+* Negative preregulator (mirror polarity)
+RZN rawn zbn {RZ}
+DZN 0 zbn DZ24
+CZN zbn 0 {CZ}
+QPASS_N rawn zbn pren TIP42C_P
+
+* Behavioural post-regulators: clamp to +/-17 V while >=2.5 V headroom.
+* These are intentionally simple and must not be used for final stability/noise claims.
+BREGP outp 0 V=if(V(prep)>19.5,17,max(0,V(prep)-2.5))
+BREGN outn 0 V=if(V(pren)<-19.5,-17,min(0,V(pren)+2.5))
+
+* Receiver current loads; sign chosen to draw current from each output rail.
+IP outp 0 {ILOAD}
+IN 0 outn {ILOAD}
+
+* Simplified device models for first-pass topology check only.
+.model DZ24 D(BV=24 IBV=5m RS=8 N=1.2 CJO=200p)
+.model TIP41C_P NPN(IS=1e-12 BF=35 VAF=75 IKF=1 CJE=300p CJC=150p VCEO=100)
+.model TIP42C_P PNP(IS=1e-12 BF=35 VAF=75 IKF=1 CJE=300p CJC=150p VCEO=100)
+
+.step param VRAW list 48 55 60
+.step param ILOAD list 0 4.7m 8m 10m
+.tran 0 300m 200m 20u startup
+.meas TRAN PREP_AVG AVG V(prep) FROM 250m TO 300m
+.meas TRAN PREN_AVG AVG V(pren) FROM 250m TO 300m
+.meas TRAN OUTP_AVG AVG V(outp) FROM 250m TO 300m
+.meas TRAN OUTN_AVG AVG V(outn) FROM 250m TO 300m
+.meas TRAN PREP_PP PP V(prep) FROM 250m TO 300m
+.meas TRAN PREN_PP PP V(pren) FROM 250m TO 300m
+.end

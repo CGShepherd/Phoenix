@@ -1,0 +1,18 @@
+# LTspice generated outputs
+*.raw
+*.log
+*.op.raw
+*.net
+*.fft
+*.plt
+
+# KiCad backups/cache
+*-backups/
+*.lck
+*.kicad_prl
+fp-info-cache
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
