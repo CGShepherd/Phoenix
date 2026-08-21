@@ -1,15 +1,41 @@
 * Project Phoenix - Architecture C initial LTspice deck
-* Purpose: topology sanity check before vendor-macromodel verification.
+* Purpose: preregulator topology and tolerance sanity check.
 * Raw rails: +/-48..60 V. 100 Hz ripple parameterised.
-* NOTE: LM317/LM337 are represented here by simple behavioural post-regulators.
-* Replace XREGP/XREGN with the selected vendor macromodels for sign-off.
+*
+* IMPORTANT:
+* - LM317/LM337 are still represented by conservative behavioural post-regulators.
+* - Their programming/minimum-load current is represented explicitly as part
+*   of the preregulator input-current demand.
+* - The BZX55C24 is represented by a deliberately simple parameterised
+*   datasheet-derived Zener model, not a claimed Vishay vendor macromodel.
+* - Replace behavioural regulators and transistor/Zener approximations with
+*   validated manufacturer models before sign-off.
 
 .param VRAW=55
 .param RIPPLE=2
 .param FLINE=100
-.param RZ=4.7k
+
+* Zener feed network
+.param RZ=3.9k
 .param CZ=47u
+
+* THAT1206 external receiver load
 .param ILOAD=4.7m
+
+* LM317/LM337 programming network
+.param VREF=1.25
+.param RSET=120
+.param IPROG={VREF/RSET}
+
+* Approximate regulator internal-current allowance.
+* Kept separate so it can be swept/replaced when vendor models are introduced.
+.param IREG=0
+
+* BZX55C24 tolerance parameter:
+* 22.8 V = low tolerance
+* 24.0 V = nominal
+* 25.6 V = high tolerance
+.param VZ=24
 
 VRAW_P rawp 0 SINE({VRAW} {RIPPLE} {FLINE})
 VRAW_N rawn 0 SINE({-VRAW} {RIPPLE} {FLINE})
@@ -20,33 +46,67 @@ DZP 0 zbp DZ24
 CZP zbp 0 {CZ}
 QPASS_P rawp zbp prep TIP41C_P
 
-* Negative preregulator (mirror polarity)
+* Negative preregulator
 RZN rawn zbn {RZ}
 DZN zbn 0 DZ24
 CZN zbn 0 {CZ}
 QPASS_N rawn zbn pren TIP42C_P
 
-* Behavioural post-regulators: clamp to +/-17 V while >=2.5 V headroom.
-* These are intentionally simple and must not be used for final stability/noise claims.
+* Behavioural post-regulators.
+* Output clamps to +/-17 V while nominal preregulator headroom exceeds 2.5 V.
+* These sources are NOT energy-conserving regulator models and are therefore
+* not used to establish preregulator current.
 BREGP outp 0 V=if(V(prep)>19.5,17,max(0,V(prep)-2.5))
 BREGN outn 0 V=if(V(pren)<-19.5,-17,min(0,V(pren)+2.5))
 
-* Receiver current loads; sign chosen to draw current from each output rail.
-IP outp 0 {ILOAD}
-IN 0 outn {ILOAD}
+* THAT1206 receiver loads at the regulated outputs
+IP_LOAD outp 0 {ILOAD}
+IN_LOAD 0 outn {ILOAD}
 
-* Simplified device models for first-pass topology check only.
-.model DZ24 D(BV=24 IBV=5m RS=8 N=1.2 CJO=200p)
-.model TIP41C_P NPN(IS=1e-12 BF=35 VAF=75 IKF=1 CJE=300p CJC=150p VCEO=100)
-.model TIP42C_P PNP(IS=1e-12 BF=35 VAF=75 IKF=1 CJE=300p CJC=150p VCEO=100)
+* Explicit preregulator-current representation.
+* This corrects the original behavioural-model deficiency:
+* the preregulator must supply both receiver current and regulator
+* programming/minimum-load current.
+IP_PRE prep 0 {ILOAD+IPROG+IREG}
+IN_PRE 0 pren {ILOAD+IPROG+IREG}
 
+* First-pass BZX55C24 approximation.
+* VZ represents the datasheet Zener voltage at approximately 5 mA and is
+* stepped across the specified tolerance range.
+*
+* This simple model is intended to establish operating current and voltage
+* margins only. It does not yet reproduce the full BZX55C24 avalanche slope,
+* temperature coefficient or noise behaviour.
+.model DZ24 D(BV={VZ} IBV=5m RS=1 N=1.2 CJO=200p)
+
+* Simplified pass-transistor models retained for topology/tolerance work only.
+* Replace with validated manufacturer TIP41C/TIP42C models before sign-off.
+.model TIP41C_P NPN(IS=1e-12 BF=35 VAF=75 IKF=1 CJE=300p CJC=150p)
+.model TIP42C_P PNP(IS=1e-12 BF=35 VAF=75 IKF=1 CJE=300p CJC=150p)
+
+* Core operating-corner sweep
 .step param VRAW list 48 55 60
 .step param ILOAD list 0 4.7m 8m 10m
+.step param VZ list 22.8 24 25.6
+
 .tran 0 300m 200m 20u startup
+
+* Preregulator measurements
 .meas TRAN PREP_AVG AVG V(prep) FROM 250m TO 300m
 .meas TRAN PREN_AVG AVG V(pren) FROM 250m TO 300m
-.meas TRAN OUTP_AVG AVG V(outp) FROM 250m TO 300m
-.meas TRAN OUTN_AVG AVG V(outn) FROM 250m TO 300m
 .meas TRAN PREP_PP PP V(prep) FROM 250m TO 300m
 .meas TRAN PREN_PP PP V(pren) FROM 250m TO 300m
+
+* Regulated-output measurements
+.meas TRAN OUTP_AVG AVG V(outp) FROM 250m TO 300m
+.meas TRAN OUTN_AVG AVG V(outn) FROM 250m TO 300m
+
+* Zener-current magnitudes
+.meas TRAN IZP_AVG AVG -I(DZP) FROM 250m TO 300m
+.meas TRAN IZN_AVG AVG -I(DZN) FROM 250m TO 300m
+
+* Pass-transistor collector-current magnitudes
+.meas TRAN IQP_AVG AVG Ic(QPASS_P) FROM 250m TO 300m
+.meas TRAN IQN_AVG AVG -Ic(QPASS_N) FROM 250m TO 300m
+
 .end
