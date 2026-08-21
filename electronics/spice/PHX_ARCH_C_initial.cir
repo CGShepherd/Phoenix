@@ -16,13 +16,13 @@ VRAW_N rawn 0 SINE({-VRAW} {RIPPLE} {FLINE})
 
 * Positive preregulator
 RZP rawp zbp {RZ}
-DZP zbp 0 DZ24
+DZP 0 zbp DZ24
 CZP zbp 0 {CZ}
 QPASS_P rawp zbp prep TIP41C_P
 
 * Negative preregulator (mirror polarity)
 RZN rawn zbn {RZ}
-DZN 0 zbn DZ24
+DZN zbn 0 DZ24
 CZN zbn 0 {CZ}
 QPASS_N rawn zbn pren TIP42C_P
 
