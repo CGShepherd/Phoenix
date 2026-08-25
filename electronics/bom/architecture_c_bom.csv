@@ -1,0 +1,18 @@
+RefGroup,Qty,Function,Manufacturer,MPN,Value/Rating,Package,Status
+QP,1,Positive preregulator pass transistor,onsemi,TIP41CG,"100 V, 6 A",TO-220-3,Selected
+QN,1,Negative preregulator pass transistor,onsemi,TIP42CG,"100 V, 6 A",TO-220-3,Selected
+U317,1,Positive regulator,Texas Instruments,LM317AT/NOPB,1.5 A adjustable,TO-220 NDE,Selected
+U337,1,Negative regulator,Texas Instruments,LM337T/NOPB,1.5 A adjustable,TO-220 NDE,Selected
+DZ24P/DZ24N,2,Preregulator Zener,Vishay,BZX55C24-TR,"24 V, 500 mW",DO-35,Selected
+DZ30P/DZ30N,2,Crowbar trigger Zener,Vishay,BZX55C30-TR,"30 V, 500 mW",DO-35,Selected
+RZP/RZN,2,Zener feed resistor,Vishay,PR01000103601JR500,"3.6 kΩ, 1 W, 5%",Axial PR01,Selected
+CZP/CZN,2,Zener bypass capacitor,Panasonic Industry,EEU-FR1H470,"47 µF, 50 V",Radial 6.3 mm,Selected
+COUTP/COUTN,2,Regulator output capacitor,Panasonic Industry,EEU-FR1H100,"10 µF, 50 V",Radial 5 mm,Selected
+FP/FN,2,Branch fuse,Littelfuse,0451.062MRL,"62 mA, 125 V, very fast",NANO2 SMD,Selected
+RBRP/RBRN,2,Branch pulse resistor,Vishay,AC03000001000JACCS,"100 Ω, 3 W, 5%",Axial AC03-CS,Selected
+TVSP/TVSN,2,Immediate regulator clamp,Littelfuse,SMBJ30A,"30 V standoff, 600 W",SMB,Selected
+SCRP/SCRN,2,Crowbar SCR,Central Semiconductor,2N5064 PBFREE,"200 V, 0.8 A",TO-92,Selected
+R1P/R1N,2,Regulator set resistor R1,,,"120 Ω, 1%, >=0.25 W",TBD,Value frozen
+R2P/R2N,2,Regulator set resistor R2,,,"1.50 kΩ, 1%, >=0.25 W",TBD,Value frozen
+RGP/RGN,2,SCR gate resistor,,,"6.8 kΩ, 1%, >=0.25 W",TBD,Value frozen
+RGKP/RGKN,2,SCR gate-cathode bleed,,,"47 kΩ, 1%, >=0.25 W",TBD,Value frozen
