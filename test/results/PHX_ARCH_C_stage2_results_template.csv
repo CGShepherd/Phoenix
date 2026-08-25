@@ -1,0 +1,5 @@
+stage,test_id,VRAW_V,ILOAD_mA,VZ_V,BFBJT,temp_C,pre_pos_V,pre_neg_V,out_pos_V,out_neg_V,out_pos_pp_mV,out_neg_pp_mV,iz_pos_mA,iz_neg_mA,result,notes
+2A,SMOKE,,,,,25,,,,,,,,,,
+2A,SWEEP,,,,,25,,,,,,,,,,
+2B,BOUNDED_BJT,,,,,,,,,,,,,,,
+2C,TEMP,,,,,,,,,,,,,,,

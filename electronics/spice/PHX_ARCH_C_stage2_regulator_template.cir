@@ -1,0 +1,101 @@
+* Project Phoenix - Architecture C Stage 2A regulator-model integration TEMPLATE
+*
+* DO NOT RUN AS VALID EVIDENCE UNTIL THE TI MODEL INTERFACES BELOW ARE BOUND.
+*
+* Purpose:
+* - Replace behavioural +/-17 V regulator clamps with official TI unencrypted
+*   LM317 and LM337-N transient models.
+* - Retain the established Architecture C preregulator topology for comparison.
+*
+* Required local vendor packages:
+* - TI SLVMC40.ZIP  : LM317 Unencrypted PSpice Transient Model
+* - TI SNVMAP4.ZIP  : LM337-N Unencrypted PSpice Transient Model
+*
+* Binding gate:
+* Run tools\prepare_stage2_models.bat and inspect the actual .SUBCKT declarations.
+* Then replace the @@...@@ tokens below with the verified include paths, names and
+* node order. Do not guess pin order.
+
+.param VRAW=55
+.param RIPPLE=2
+.param FLINE=100
+.param RZ=3.9k
+.param CZ=47u
+.param ILOAD=4.7m
+.param VZ=24
+.param BFBJT=15
+
+VRAW_P rawp 0 SINE({VRAW} {RIPPLE} {FLINE})
+VRAW_N rawn 0 SINE({-VRAW} {RIPPLE} {FLINE})
+
+* Positive preregulator
+RZP rawp zbp {RZ}
+DZP 0 zbp DZ24
+CZP zbp 0 {CZ}
+QPASS_P rawp zbp prep TIP41C_BOUNDED
+
+* Negative preregulator
+RZN rawn zbn {RZ}
+DZN zbn 0 DZ24
+CZN zbn 0 {CZ}
+QPASS_N rawn zbn pren TIP42C_BOUNDED
+
+* Regulator programming networks.
+* R1 = 120 ohm is deliberately retained to satisfy the design minimum-load
+* strategy independent of THAT1206 external load.
+R1P outp adjp 120
+R2P adjp 0 1.50k
+
+R1N outn adjn 120
+R2N adjn 0 1.50k
+
+* Output capacitors.
+* LM337-N requires output capacitance for frequency compensation; final value
+* and capacitor technology remain subject to datasheet/model validation.
+COUTP outp 0 10u
+COUTN 0 outn 10u
+
+* THAT1206-equivalent rail loads
+IP_LOAD outp 0 {ILOAD}
+IN_LOAD 0 outn {ILOAD}
+
+* =====================================================================
+* TI MODEL BINDING — intentionally unresolved until preparation output
+* =====================================================================
+.include "@@LM317_MODEL_INCLUDE@@"
+.include "@@LM337_MODEL_INCLUDE@@"
+
+* Replace each line with the VERIFIED vendor node order.
+* Example syntax only:
+* XU317 <verified nodes...> @@LM317_SUBCKT_NAME@@
+* XU337 <verified nodes...> @@LM337_SUBCKT_NAME@@
+XU317 @@LM317_NODE_BINDING@@ @@LM317_SUBCKT_NAME@@
+XU337 @@LM337_NODE_BINDING@@ @@LM337_SUBCKT_NAME@@
+
+* First-pass BZX55C24 approximation retained from Stage 1.
+.model DZ24 D(BV={VZ} IBV=5m RS=1 N=1.2 CJO=200p)
+
+* Datasheet-bounded pass transistor sensitivity model.
+* This is NOT claimed to be a manufacturer macromodel.
+.model TIP41C_BOUNDED NPN(IS=1e-12 BF={BFBJT} VAF=75 IKF=1 CJE=300p CJC=150p)
+.model TIP42C_BOUNDED PNP(IS=1e-12 BF={BFBJT} VAF=75 IKF=1 CJE=300p CJC=150p)
+
+* Smoke-test operating point first.
+.op
+
+* Full sweep to enable only after model smoke test succeeds:
+*.step param VRAW list 48 55 60
+*.step param ILOAD list 0 4.7m 8m 10m
+*.step param VZ list 22.8 24 25.6
+*.tran 0 300m 0 20u startup
+*
+*.meas TRAN PREP_AVG AVG V(prep) FROM 250m TO 300m
+*.meas TRAN PREN_AVG AVG V(pren) FROM 250m TO 300m
+*.meas TRAN OUTP_AVG AVG V(outp) FROM 250m TO 300m
+*.meas TRAN OUTN_AVG AVG V(outn) FROM 250m TO 300m
+*.meas TRAN OUTP_PP PP V(outp) FROM 250m TO 300m
+*.meas TRAN OUTN_PP PP V(outn) FROM 250m TO 300m
+*.meas TRAN IZP_AVG AVG -I(DZP) FROM 250m TO 300m
+*.meas TRAN IZN_AVG AVG -I(DZN) FROM 250m TO 300m
+
+.end
