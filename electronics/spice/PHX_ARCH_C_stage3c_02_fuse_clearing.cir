@@ -1,0 +1,23 @@
+* Project Phoenix - Architecture C Stage 3C protection closure
+* Destructive-fault decks deliberately exclude TI regulator macromodels.
+* Regulator safety is evaluated against a 40 V input-output differential limit.
+
+* TEST 02: crowbar current and fuse melting-I2t timing.
+.param VRAW=60 RFUSE=5.5 RBR=100
+VRAW src 0 {VRAW}
+RFUSE src raw {RFUSE}
+VS raw sense 0
+RBR sense crow {RBR}
+VC ctl 0 PULSE(0 1 100m 1u 1u 20m 300m)
+SCROW crow 0 ctl 0 SWC
+.model SWC SW(Ron=0.05 Roff=1G Vt=0.5 Vh=0.1)
+
+.step param VRAW list 48 55 60
+.tran 0 105m 0 0.5u
+BISQ isq 0 V={I(VS)*I(VS)}
+.meas TRAN IFAULT AVG I(VS) FROM 100.1m TO 101m
+.meas TRAN I2T_0P25MS INTEG V(isq) FROM 100m TO 100.25m
+.meas TRAN I2T_0P5MS INTEG V(isq) FROM 100m TO 100.5m
+.meas TRAN I2T_1MS INTEG V(isq) FROM 100m TO 101m
+.meas TRAN I2T_2MS INTEG V(isq) FROM 100m TO 102m
+.end

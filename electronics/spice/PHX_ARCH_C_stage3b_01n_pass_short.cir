@@ -1,0 +1,35 @@
+* Project Phoenix - Architecture C Stage 3B consolidated verification
+* Requires:
+*   models/ti/ltspice/LM317_TRANS_LTSPICE.LIB
+*   models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB
+
+* TEST 01N: negative preregulator pass-short exposure with bounded source.
+.param VRAW=60 RFUSE=5.5 RBR=100 ILOAD=10m DELAY=200u
+
+VRAW src 0 {-VRAW}
+RFUSE src raw {RFUSE}
+RBR raw faultnode {RBR}
+VFAULT fctl 0 PULSE(0 1 100m 1u 1u 20m 300m)
+SFAULT faultnode regin fctl 0 SWFAULT
+VCROW cctl 0 PULSE(0 1 {100m+DELAY} 1u 1u 20m 300m)
+SCROW 0 regin cctl 0 SWCROW
+
+R1 out adj 120
+R2 adj 0 1.50k
+COUT 0 out 10u
+ILOAD 0 out {ILOAD}
+.include "models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB"
+XU regin adj out LM337_N_TRANS
+
+.model SWFAULT SW(Ron=0.02 Roff=1G Vt=0.5 Vh=0.1)
+.model SWCROW SW(Ron=0.05 Roff=1G Vt=0.5 Vh=0.1)
+
+.step param DELAY list 50u 200u 1m
+.tran 0 110m 0 0.5u startup
+
+.meas TRAN VINMAG_PRE_CROW_MAX MAX -V(regin) FROM 100m TO {100m+DELAY}
+.meas TRAN DIFF_PRE_CROW_MAX MAX V(out,regin) FROM 100m TO {100m+DELAY}
+.meas TRAN VINMAG_POST_CROW_MAX MAX -V(regin) FROM {100m+DELAY} TO 102m
+.meas TRAN IFUSE_MAG_MAX MAX -I(RFUSE) FROM 100m TO 102m
+.meas TRAN OUTMAG_MIN MIN -V(out) FROM 100m TO 105m
+.end

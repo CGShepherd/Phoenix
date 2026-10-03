@@ -1,0 +1,22 @@
+* Project Phoenix - Architecture C Stage 3C protection closure
+* Destructive-fault decks deliberately exclude TI regulator macromodels.
+* Regulator safety is evaluated against a 40 V input-output differential limit.
+
+* TEST 01N: mirrored negative pass-short physical fault network.
+.param VRAW=60 RFUSE=5.5 RBR=100 VOUT=17 DELAY=200u
+
+VRAW src 0 {-VRAW}
+RFUSE src raw {RFUSE}
+RBR raw regin {RBR}
+VC ctl 0 PULSE(0 1 {100m+DELAY} 1u 1u 20m 300m)
+SCROW 0 regin ctl 0 SWC
+.model SWC SW(Ron=0.05 Roff=1G Vt=0.5 Vh=0.1)
+RLOAD regin 0 2.4k
+
+.step param DELAY list 10u 25u 50u 100u 200u 500u 1m 2m 5m
+.tran 0 110m 0 0.5u
+
+.meas TRAN VINMAG_PRE_MAX MAX -V(regin) FROM 100m TO {100m+DELAY}
+.meas TRAN DIFF_PRE_MAX PARAM VINMAG_PRE_MAX-VOUT
+.meas TRAN IFUSE_MAG_MAX MAX -I(RFUSE) FROM {100m+DELAY} TO {100m+DELAY+1m}
+.end

@@ -1,0 +1,47 @@
+* Project Phoenix - Architecture C Stage 3 batch verification
+* Requires locally prepared TI LTspice compatibility libraries:
+*   models/ti/ltspice/LM317_TRANS_LTSPICE.LIB
+*   models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB
+
+* TEST 05: negative raw rail loss while positive rail remains powered.
+.param ILOAD=10m RFUSE=5.5 RBR=100
+VRAW_P srcp 0 60
+VRAW_N srcn 0 PWL(0 -60 100m -60 101m 0 250m 0)
+RFUSEP srcp rawp {RFUSE}
+RFUSEN srcn rawn {RFUSE}
+RBRP rawp cp {RBR}
+RBRN rawn cn {RBR}
+RZP cp zbp 3.6k
+DZP 0 zbp DZ24
+CZP zbp 0 47u
+QPASS_P cp zbp prep TIP41C_BOUNDED
+RZN cn zbn 3.6k
+DZN zbn 0 DZ24
+CZN zbn 0 47u
+QPASS_N cn zbn pren TIP42C_BOUNDED
+
+R1P outp adjp 120
+R2P adjp 0 1.50k
+R1N outn adjn 120
+R2N adjn 0 1.50k
+COUTP outp 0 10u
+COUTN 0 outn 10u
+IP outp 0 {ILOAD}
+IN 0 outn {ILOAD}
+
+.include "models/ti/ltspice/LM317_TRANS_LTSPICE.LIB"
+.include "models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB"
+XUP prep adjp outp nc317 LM317_TRANS
+XUN pren adjn outn LM337_N_TRANS
+.model DZ24 D(BV=24 IBV=5m RS=1 N=1.2 CJO=200p)
+.model TIP41C_BOUNDED NPN(IS=1e-12 BF=15 VAF=75 IKF=1 CJE=300p CJC=150p)
+.model TIP42C_BOUNDED PNP(IS=1e-12 BF=15 VAF=75 IKF=1 CJE=300p CJC=150p)
+
+.tran 0 250m 0 5u startup
+.meas TRAN POS_BEFORE AVG V(outp) FROM 70m TO 95m
+.meas TRAN POS_AFTER AVG V(outp) FROM 150m TO 200m
+.meas TRAN NEG_BEFORE AVG V(outn) FROM 70m TO 95m
+.meas TRAN NEG_AFTER AVG V(outn) FROM 180m TO 230m
+.meas TRAN POS_DISTURB_MAX MAX V(outp) FROM 95m TO 130m
+.meas TRAN POS_DISTURB_MIN MIN V(outp) FROM 95m TO 130m
+.end

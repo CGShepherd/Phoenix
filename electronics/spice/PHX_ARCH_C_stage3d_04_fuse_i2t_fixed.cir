@@ -1,0 +1,38 @@
+* Project Phoenix - Architecture C Stage 3D fuse-I2t closure
+* Corrected current-squared expression: multiplication, not caret/XOR.
+* TVS model: conservative linearized SMBJ30A approximation.
+
+.param VRAW=60 RBR=100 RFUSE=5.5
+
+VRAW src 0 {VRAW}
+RF src raw {RFUSE}
+VS raw sense 0
+RB sense reg {RBR}
+DTVS 0 reg TVS
+
+.model TVS D(BV=36.8 IBV=1m RS=0.9356 N=1 CJO=500p)
+
+.step param VRAW list 48 55 60 62
+.tran 0 20m 0 1u
+
+BISQ isq 0 V={I(VS)*I(VS)}
+BPTVS ptvs 0 V={V(reg)*(-I(DTVS))}
+BPR pr 0 V={V(sense,reg)*I(VS)}
+
+.meas TRAN IFAULT AVG I(VS) FROM 1m TO 2m
+.meas TRAN I2T_0P25MS INTEG V(isq) FROM 0 TO 0.25m
+.meas TRAN I2T_0P5MS INTEG V(isq) FROM 0 TO 0.5m
+.meas TRAN I2T_1MS INTEG V(isq) FROM 0 TO 1m
+.meas TRAN I2T_2MS INTEG V(isq) FROM 0 TO 2m
+.meas TRAN I2T_5MS INTEG V(isq) FROM 0 TO 5m
+.meas TRAN I2T_10MS INTEG V(isq) FROM 0 TO 10m
+
+.meas TRAN ETVS_1MS INTEG V(ptvs) FROM 0 TO 1m
+.meas TRAN ETVS_2MS INTEG V(ptvs) FROM 0 TO 2m
+.meas TRAN ETVS_5MS INTEG V(ptvs) FROM 0 TO 5m
+
+.meas TRAN ERBR_1MS INTEG V(pr) FROM 0 TO 1m
+.meas TRAN ERBR_2MS INTEG V(pr) FROM 0 TO 2m
+.meas TRAN ERBR_5MS INTEG V(pr) FROM 0 TO 5m
+
+.end

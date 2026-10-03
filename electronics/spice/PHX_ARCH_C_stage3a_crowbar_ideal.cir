@@ -1,0 +1,36 @@
+* Project Phoenix - Architecture C Stage 3A idealised crowbar/fuse coordination
+* Purpose: estimate branch-fault current available to clear a dedicated fuse.
+*
+* This is NOT an SCR macromodel. It represents successful crowbar firing at t=101 ms
+* following a pass-transistor C-E short at t=100 ms. Crowbar on-state resistance 0.5 ohm.
+* Sweep branch resistor. Raw source held at 60 V, i.e. worst high-line fault energy.
+
+.param RBR=68
+
+VRAW_P rawp 0 60
+RBP rawp cp {RBR}
+
+* failed pass transistor
+SFAULT cp prep faultctl 0 SWFAULT
+VFAULT faultctl 0 PULSE(0 5 100m 1u 1u 1 2)
+
+* successful crowbar, 1 ms after overvoltage fault
+SCROW prep 0 crowctl 0 SWCROW
+VCROW crowctl 0 PULSE(0 5 101m 1u 1u 1 2)
+
+.model SWFAULT SW(Ron=0.01 Roff=1G Vt=2 Vh=0)
+.model SWCROW SW(Ron=0.5 Roff=1G Vt=2 Vh=0)
+
+* small capacitance representing preregulator/regulator local storage
+CPRE prep 0 20u
+
+.step param RBR list 47 68 100
+.tran 0 120m 0 2u startup
+
+.meas TRAN ICROW_AVG AVG I(SCROW) FROM 103m TO 115m
+.meas TRAN ICROW_MAX MAX I(SCROW) FROM 101m TO 115m
+.meas TRAN IBR_AVG AVG I(RBP) FROM 103m TO 115m
+.meas TRAN PBR_AVG AVG V(rawp,cp)*I(RBP) FROM 103m TO 115m
+.meas TRAN VPRE_MAX MAX V(prep) FROM 100m TO 115m
+
+.end

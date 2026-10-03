@@ -1,0 +1,21 @@
+* Project Phoenix - Architecture C Stage 3B consolidated verification
+* Requires:
+*   models/ti/ltspice/LM317_TRANS_LTSPICE.LIB
+*   models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB
+
+* TEST 06: crowbar branch current decay and SCR holding-current margin.
+.param VRAW=60 RFUSE=5.5 RBR=100
+VRAW src 0 {VRAW}
+RFUSE src raw {RFUSE}
+RBR raw crow {RBR}
+VC ctl 0 PULSE(0 1 100m 1u 1u 50m 300m)
+SC crow 0 ctl 0 SWC
+.model SWC SW(Ron=0.05 Roff=1G Vt=0.5 Vh=0.1)
+
+.step param VRAW list 48 55 60
+.tran 0 110m 0 1u
+.meas TRAN ICROW_100P1M AVG I(RBR) FROM 100.1m TO 100.2m
+.meas TRAN ICROW_101M AVG I(RBR) FROM 100.9m TO 101.1m
+.meas TRAN ICROW_105M AVG I(RBR) FROM 104.9m TO 105.1m
+.meas TRAN IH_MARGIN_5MA PARAM ICROW_105M/5m
+.end

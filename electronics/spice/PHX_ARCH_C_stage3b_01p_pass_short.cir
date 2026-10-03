@@ -1,0 +1,42 @@
+* Project Phoenix - Architecture C Stage 3B consolidated verification
+* Requires:
+*   models/ti/ltspice/LM317_TRANS_LTSPICE.LIB
+*   models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB
+
+* TEST 01P: positive preregulator pass-short exposure with bounded source.
+* Regulator input is driven from an explicit source network so TI model cannot
+* back-drive the raw source node to unphysical voltages.
+
+.param VRAW=60 RFUSE=5.5 RBR=100 ILOAD=10m DELAY=200u
+
+VRAW src 0 {VRAW}
+RFUSE src raw {RFUSE}
+RBR raw faultnode {RBR}
+
+* Fault switch applies raw branch to regulator input at 100 ms.
+VFAULT fctl 0 PULSE(0 1 100m 1u 1u 20m 300m)
+SFAULT faultnode regin fctl 0 SWFAULT
+
+* Crowbar clamps regulator input to ground after DELAY.
+VCROW cctl 0 PULSE(0 1 {100m+DELAY} 1u 1u 20m 300m)
+SCROW regin 0 cctl 0 SWCROW
+
+R1 out adj 120
+R2 adj 0 1.50k
+COUT out 0 10u
+ILOAD out 0 {ILOAD}
+.include "models/ti/ltspice/LM317_TRANS_LTSPICE.LIB"
+XU regin adj out nc317 LM317_TRANS
+
+.model SWFAULT SW(Ron=0.02 Roff=1G Vt=0.5 Vh=0.1)
+.model SWCROW SW(Ron=0.05 Roff=1G Vt=0.5 Vh=0.1)
+
+.step param DELAY list 50u 200u 1m
+.tran 0 110m 0 0.5u startup
+
+.meas TRAN VIN_PRE_CROW_MAX MAX V(regin) FROM 100m TO {100m+DELAY}
+.meas TRAN DIFF_PRE_CROW_MAX MAX V(regin,out) FROM 100m TO {100m+DELAY}
+.meas TRAN VIN_POST_CROW_MAX MAX V(regin) FROM {100m+DELAY} TO 102m
+.meas TRAN IFUSE_MAX MAX I(RFUSE) FROM 100m TO 102m
+.meas TRAN OUT_MIN MIN V(out) FROM 100m TO 105m
+.end

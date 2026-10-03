@@ -1,0 +1,41 @@
+* Project Phoenix - Architecture C Stage 3A preregulator C-E short stress
+* Purpose: demonstrate regulator differential-voltage stress if QPASS shorts.
+*
+* Positive rail only for clarity. QPASS is replaced by an ideal short at t=100 ms.
+* No crowbar is present. Sweep branch resistor to quantify how little it helps once
+* steady-state current is low; this deck is for regulator-stress evidence only.
+
+.param VRAW=60
+.param RBR=68
+.param ILOAD=10m
+
+VRAW_P rawp 0 60
+RBP rawp cp {RBR}
+
+* pass transistor C-E short introduced after 100 ms
+SFAULT cp prep ctrl 0 SWFAULT
+VCTRL ctrl 0 PULSE(0 5 100m 1u 1u 1 2)
+.model SWFAULT SW(Ron=0.01 Roff=1G Vt=2 Vh=0)
+
+VSENSEP prep reginp 0
+R1P outp adjp 120
+R2P adjp 0 1.50k
+COUTP outp 0 10u
+IP_LOAD outp 0 {ILOAD}
+
+.include "models/ti/ltspice/LM317_TRANS_LTSPICE.LIB"
+XU317 reginp adjp outp nc317 LM317_TRANS
+
+* weak pre-fault bias only so regulator starts in a valid state
+VPRESTART prep_start 0 23.4
+RSTART prep_start prep 10k
+
+.step param RBR list 47 68 100
+.tran 0 180m 0 10u startup
+
+.meas TRAN VINREG_MAX MAX V(reginp) FROM 110m TO 170m
+.meas TRAN VOUT_AVG AVG V(outp) FROM 130m TO 170m
+.meas TRAN DIFF_MAX MAX V(reginp,outp) FROM 110m TO 170m
+.meas TRAN IBR_MAX MAX I(RBP) FROM 110m TO 170m
+
+.end

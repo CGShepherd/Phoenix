@@ -1,0 +1,27 @@
+* Project Phoenix - Architecture C Stage 3B consolidated verification
+* Requires:
+*   models/ti/ltspice/LM317_TRANS_LTSPICE.LIB
+*   models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB
+
+* TEST 03: normal maximum preregulator input vs trigger threshold.
+.param VRAW=60 RIPPLE=2 FLINE=100 ILOAD=0 VZ=25.6
+.param RFUSE=5.5 RBR=100 RZ=3.6k CZ=47u BFBJT=15
+VRAW_P srcp 0 SINE({VRAW} {RIPPLE} {FLINE})
+RFUSE srcp rawp {RFUSE}
+RBR rawp cp {RBR}
+RZP cp zbp {RZ}
+DZP 0 zbp DZ24
+CZP zbp 0 {CZ}
+QPASS cp zbp prep TIP41C_BOUNDED
+R1 out adj 120
+R2 adj 0 1.50k
+COUT out 0 10u
+.include "models/ti/ltspice/LM317_TRANS_LTSPICE.LIB"
+XU prep adj out nc317 LM317_TRANS
+.model DZ24 D(BV={VZ} IBV=5m RS=1 N=1.2 CJO=200p)
+.model TIP41C_BOUNDED NPN(IS=1e-12 BF={BFBJT} VAF=75 IKF=1 CJE=300p CJC=150p)
+
+.tran 0 220m 0 5u startup
+.meas TRAN PREP_MAX MAX V(prep) FROM 170m TO 220m
+.meas TRAN OUT_AVG AVG V(out) FROM 170m TO 220m
+.end

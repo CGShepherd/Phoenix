@@ -1,0 +1,22 @@
+* Project Phoenix - Architecture C Stage 3B consolidated verification
+* Requires:
+*   models/ti/ltspice/LM317_TRANS_LTSPICE.LIB
+*   models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB
+
+* TEST 02: crowbar trigger/no-trigger window from datasheet bounds.
+.param VZT25=30 TDEV=25 TCV=0.0004 RG=6.8k VG=0.8
+.param IGT=200u
+.param VZEFF={VZT25*(1+TCV*(TDEV-25))}
+.param VTRIG={VZEFF+VG+IGT*RG}
+
+.step param VZT25 list 28 30 32
+.step param TDEV list -40 25 60 85
+.step param TCV list 0.0004 0.0012
+.step param IGT list 200u 350u
+
+.op
+.meas OP VZEFF_CALC PARAM VZEFF
+.meas OP VTRIG_CALC PARAM VTRIG
+.meas OP NORMAL_MARGIN_25V PARAM VTRIG-25.1
+.meas OP LM40_MARGIN PARAM 56.9-VTRIG
+.end

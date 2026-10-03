@@ -1,0 +1,21 @@
+* Project Phoenix - Architecture C Stage 3C protection closure
+* Destructive-fault decks deliberately exclude TI regulator macromodels.
+* Regulator safety is evaluated against a 40 V input-output differential limit.
+
+* TEST 04: analytic trigger margin against maximum known normal preregulator input.
+.param VNORMAL=25.1
+.param VZT25=28 TDEV=-40 TCV=0.0004 RG=6.8k VG=0.8 IGT=200u
+.param VZEFF={VZT25*(1+TCV*(TDEV-25))}
+.param VTRIG={VZEFF+VG+IGT*RG}
+VDUMMY n 0 1
+R n 0 1G
+
+.step param VZT25 list 28 32
+.step param TDEV list -40 25 85
+.step param TCV list 0.0004 0.0012
+.step param IGT list 200u 350u
+.op
+.meas OP VTRIG_CALC PARAM VTRIG
+.meas OP NORMAL_MARGIN PARAM VTRIG-VNORMAL
+.meas OP DIFF_LIMIT_MARGIN PARAM 56.9-VTRIG
+.end

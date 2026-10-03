@@ -1,0 +1,36 @@
+* Project Phoenix - Architecture C Stage 3B consolidated verification
+* Requires:
+*   models/ti/ltspice/LM317_TRANS_LTSPICE.LIB
+*   models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB
+
+* TEST 00: corrected fuse I2t / branch resistor pulse energy.
+.param VRAW=60 RFUSE=5.5 RBR=100
+
+VRAW_P srcp 0 {VRAW}
+RFUSE srcp rawp {RFUSE}
+VSENSE rawp rawp_s 0
+RBR rawp_s crow {RBR}
+VC crowctl 0 PULSE(0 1 100m 1u 1u 50m 300m)
+SCROW crow 0 crowctl 0 SWCROW
+.model SWCROW SW(Ron=0.05 Roff=1G Vt=0.5 Vh=0.1)
+
+.step param VRAW list 48 55 60
+.tran 0 110m 0 1u
+
+* Use sensed branch current explicitly.
+.meas TRAN IFUSE_AVG AVG I(VSENSE) FROM 100.1m TO 101m
+.meas TRAN IFUSE_MAX MAX I(VSENSE) FROM 100m TO 101m
+
+* Behavioral power node: 1 V corresponds to 1 A^2.
+BISQ isq 0 V={I(VSENSE)*I(VSENSE)}
+.meas TRAN I2T_0P25MS INTEG V(isq) FROM 100m TO 100.25m
+.meas TRAN I2T_0P5MS INTEG V(isq) FROM 100m TO 100.5m
+.meas TRAN I2T_1MS INTEG V(isq) FROM 100m TO 101m
+.meas TRAN I2T_2MS INTEG V(isq) FROM 100m TO 102m
+
+* Branch resistor pulse energy.
+BPR pr 0 V={V(rawp_s,crow)*I(VSENSE)}
+.meas TRAN ERBR_0P5MS INTEG V(pr) FROM 100m TO 100.5m
+.meas TRAN ERBR_1MS INTEG V(pr) FROM 100m TO 101m
+.meas TRAN PRBR_MAX MAX V(pr) FROM 100m TO 101m
+.end

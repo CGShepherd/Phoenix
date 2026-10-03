@@ -1,0 +1,28 @@
+* Project Phoenix - Architecture C Stage 3 batch verification
+* Requires locally prepared TI LTspice compatibility libraries:
+*   models/ti/ltspice/LM317_TRANS_LTSPICE.LIB
+*   models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB
+
+* TEST 02: ideal crowbar current and fuse I2t coordination.
+* Includes Littelfuse 451/453 62mA nominal cold resistance 5.5 ohm.
+.param VRAW=60 RIPPLE=2 FLINE=100 RFUSE=5.5 RBR=100
+
+VRAW_P srcp 0 SINE({VRAW} {RIPPLE} {FLINE})
+RFUSE srcp rawp {RFUSE}
+RBR rawp crow {RBR}
+VC crowctl 0 PULSE(0 1 100m 1u 1u 100m 300m)
+SCROW crow 0 crowctl 0 SWCROW
+.model SWCROW SW(Ron=0.05 Roff=1G Vt=0.5 Vh=0.1)
+
+.step param VRAW list 48 55 60
+.tran 0 120m 0 2u startup
+
+.meas TRAN ICROW_AVG AVG I(RBR) FROM 101m TO 105m
+.meas TRAN ICROW_MAX MAX I(RBR) FROM 100m TO 105m
+.meas TRAN I2T_0P5MS INTEG I(RBR)^2 FROM 100m TO 100.5m
+.meas TRAN I2T_1MS INTEG I(RBR)^2 FROM 100m TO 101m
+.meas TRAN I2T_2MS INTEG I(RBR)^2 FROM 100m TO 102m
+.meas TRAN I2T_5MS INTEG I(RBR)^2 FROM 100m TO 105m
+.meas TRAN ERBR_1MS INTEG V(rawp,crow)*I(RBR) FROM 100m TO 101m
+.meas TRAN PRBR_MAX MAX V(rawp,crow)*I(RBR) FROM 100m TO 105m
+.end

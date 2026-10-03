@@ -1,0 +1,23 @@
+* Project Phoenix - Architecture C Stage 3C protection closure
+* Destructive-fault decks deliberately exclude TI regulator macromodels.
+* Regulator safety is evaluated against a 40 V input-output differential limit.
+
+* TEST 00: BZX55C30 / 2N5064 trigger threshold bounds.
+.param VZT25=30 TDEV=25 TCV=0.0004 RG=6.8k VG=0.8 IGT=200u
+.param VZEFF={VZT25*(1+TCV*(TDEV-25))}
+.param VTRIG={VZEFF+VG+IGT*RG}
+
+VDUMMY ndummy 0 1
+RDUMMY ndummy 0 1G
+
+.step param VZT25 list 28 30 32
+.step param TDEV list -40 25 60 85
+.step param TCV list 0.0004 0.0012
+.step param IGT list 200u 350u
+
+.op
+.meas OP VZEFF_CALC PARAM VZEFF
+.meas OP VTRIG_CALC PARAM VTRIG
+.meas OP NUISANCE_MARGIN PARAM VTRIG-25.1
+.meas OP LM317_DIFF_MARGIN PARAM 56.9-VTRIG
+.end

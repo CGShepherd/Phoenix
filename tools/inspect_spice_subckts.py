@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Enumerate SPICE .SUBCKT declarations and basic file hashes.
+r"""Enumerate SPICE .SUBCKT declarations and basic file hashes.
 
 Usage:
     python tools\inspect_spice_subckts.py <file-or-directory> [...]
@@ -24,7 +24,6 @@ def sha256(path: pathlib.Path) -> str:
     return h.hexdigest()
 
 def logical_lines(text: str):
-    """Join SPICE '+' continuation lines to the preceding logical line."""
     current = None
     for raw in text.splitlines():
         line = raw.rstrip()
@@ -45,12 +44,10 @@ def inspect(path: pathlib.Path):
         return
 
     subs = []
-    for lineno, line in enumerate(logical_lines(text), start=1):
+    for line in logical_lines(text):
         m = re.match(r"^\s*\.subckt\s+(\S+)\s*(.*)$", line, re.I)
         if m:
-            name = m.group(1)
-            nodes = m.group(2).strip()
-            subs.append((name, nodes))
+            subs.append((m.group(1), m.group(2).strip()))
 
     print("=" * 78)
     print(f"FILE: {path}")
@@ -74,9 +71,8 @@ def iter_files(arg: pathlib.Path):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python tools\\inspect_spice_subckts.py <file-or-directory> [...]")
+        print(r"Usage: python tools\inspect_spice_subckts.py <file-or-directory> [...]")
         return 2
-
     seen = set()
     for arg in map(pathlib.Path, sys.argv[1:]):
         for path in iter_files(arg):

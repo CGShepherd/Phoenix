@@ -1,0 +1,28 @@
+* Project Phoenix - Architecture C Stage 3 batch verification
+* Requires locally prepared TI LTspice compatibility libraries:
+*   models/ti/ltspice/LM317_TRANS_LTSPICE.LIB
+*   models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB
+
+* TEST 01: analytical trigger-network threshold sensitivity.
+* BZX55C30 tolerance = 28..32 V at 25 C.
+* Datasheet tempco sensitivity = 0.04..0.12 %/K.
+* Gate current criteria = 200 uA (25 C max) and 350 uA (-40 C max).
+.param VZT25=30 TDEV=25 TCV=0.0004 RG=6.8k RGK=47k VG=0.8
+.param VZEFF={VZT25*(1+TCV*(TDEV-25))}
+
+VTEST vin 0 0
+* Idealized trigger branch: current source represents max((VIN-VZEFF-VG)/RG,0).
+BTRIG ntrig 0 I={max((V(vin)-VZEFF-VG)/RG,0)}
+RMON ntrig 0 1
+* A behavioral voltage node exposing trigger current in volts/A for measurements.
+BIMON imon 0 V={max((V(vin)-VZEFF-VG)/RG,0)}
+
+.step param VZT25 list 28 30 32
+.step param TDEV list 25 60 85
+.step param TCV list 0.0004 0.0012
+.dc VTEST 20 60 0.01
+
+.meas DC VTRIG_200 WHEN V(imon)=200u CROSS=1
+.meas DC VTRIG_350 WHEN V(imon)=350u CROSS=1
+.meas DC VZEFF_CALC PARAM VZEFF
+.end

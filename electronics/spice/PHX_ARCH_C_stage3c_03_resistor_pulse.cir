@@ -1,0 +1,22 @@
+* Project Phoenix - Architecture C Stage 3C protection closure
+* Destructive-fault decks deliberately exclude TI regulator macromodels.
+* Regulator safety is evaluated against a 40 V input-output differential limit.
+
+* TEST 03: branch-resistor pulse electrical stress envelope.
+.param VRAW=60 RFUSE=5.5 RBR=100
+VRAW src 0 {VRAW}
+RFUSE src raw {RFUSE}
+RBR raw crow {RBR}
+VC ctl 0 PULSE(0 1 100m 1u 1u 20m 300m)
+SC crow 0 ctl 0 SWC
+.model SWC SW(Ron=0.05 Roff=1G Vt=0.5 Vh=0.1)
+
+.step param VRAW list 48 55 60
+.tran 0 103m 0 0.5u
+BPR pr 0 V={V(raw,crow)*I(RBR)}
+.meas TRAN PPK MAX V(pr) FROM 100m TO 101m
+.meas TRAN E0P25 INTEG V(pr) FROM 100m TO 100.25m
+.meas TRAN E0P5 INTEG V(pr) FROM 100m TO 100.5m
+.meas TRAN E1 INTEG V(pr) FROM 100m TO 101m
+.meas TRAN E2 INTEG V(pr) FROM 100m TO 102m
+.end

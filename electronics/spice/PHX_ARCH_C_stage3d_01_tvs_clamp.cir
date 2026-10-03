@@ -1,0 +1,34 @@
+* Project Phoenix - Architecture C Stage 3D TVS clamp integration
+* TVS model is a conservative linearized SMBJ30A approximation:
+*   BV(max) = 36.8 V at ~1 mA
+*   RS = (48.4-36.8)/(12.4-0.001) = 0.9356 ohm
+* Source impedance includes 5.5 ohm fuse + 100 ohm branch resistor.
+
+* TEST 01: positive/negative pass-short clamp without SCR assistance.
+.param VRAW=60 RBR=100 RFUSE=5.5
+
+* Positive rail
+VP srcp 0 {VRAW}
+RFP srcp rawp {RFUSE}
+RBP rawp regp {RBR}
+DTP 0 regp TVSP
+
+* Negative rail
+VN srcn 0 {-VRAW}
+RFN srcn rawn {RFUSE}
+RBN rawn regn {RBR}
+DTN regn 0 TVSN
+
+.model TVSP D(BV=36.8 IBV=1m RS=0.9356 N=1 CJO=500p)
+.model TVSN D(BV=36.8 IBV=1m RS=0.9356 N=1 CJO=500p)
+
+.step param VRAW list 48 55 60 62
+.op
+
+.meas OP VCLAMP_P PARAM V(regp)
+.meas OP VCLAMP_N PARAM -V(regn)
+.meas OP IFUSE_P PARAM I(RFP)
+.meas OP IFUSE_N PARAM -I(RFN)
+.meas OP PTVS_P PARAM V(regp)*(-I(DTP))
+.meas OP PTVS_N PARAM (-V(regn))*(-I(DTN))
+.end

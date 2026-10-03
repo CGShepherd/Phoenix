@@ -1,0 +1,89 @@
+* Project Phoenix - Architecture C Stage 2A TI regulator full sweep
+* Uses minimally transformed TI PSpice models for LTspice coexistence.
+* Model compatibility change: helper-subcircuit namespacing only.
+
+.param VRAW=55
+.param RIPPLE=2
+.param FLINE=100
+.param RZ=3.9k
+.param CZ=47u
+.param ILOAD=4.7m
+.param VZ=24
+.param BFBJT=15
+
+VRAW_P rawp 0 SINE({VRAW} {RIPPLE} {FLINE})
+VRAW_N rawn 0 SINE({-VRAW} {RIPPLE} {FLINE})
+
+RZP rawp zbp {RZ}
+DZP 0 zbp DZ24
+CZP zbp 0 {CZ}
+QPASS_P rawp zbp prep TIP41C_BOUNDED
+
+RZN rawn zbn {RZ}
+DZN zbn 0 DZ24
+CZN zbn 0 {CZ}
+QPASS_N rawn zbn pren TIP42C_BOUNDED
+
+VSENSEP prep reginp 0
+VSENSEN pren reginn 0
+
+R1P outp adjp 120
+R2P adjp 0 1.50k
+R1N outn adjn 120
+R2N adjn 0 1.50k
+
+COUTP outp 0 10u
+COUTN 0 outn 10u
+
+IP_LOAD outp 0 {ILOAD}
+IN_LOAD 0 outn {ILOAD}
+
+.include "models/ti/ltspice/LM317_TRANS_LTSPICE.LIB"
+.include "models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB"
+
+XU317 reginp adjp outp nc317 LM317_TRANS
+XU337 reginn adjn outn LM337_N_TRANS
+
+.model DZ24 D(BV={VZ} IBV=5m RS=1 N=1.2 CJO=200p)
+.model TIP41C_BOUNDED NPN(IS=1e-12 BF={BFBJT} VAF=75 IKF=1 CJE=300p CJC=150p)
+.model TIP42C_BOUNDED PNP(IS=1e-12 BF={BFBJT} VAF=75 IKF=1 CJE=300p CJC=150p)
+
+.step param VRAW list 48 55 60
+.step param ILOAD list 0 4.7m 8m 10m
+.step param VZ list 22.8 24 25.6
+
+.tran 0 300m 0 20u startup
+
+.meas TRAN PREP_AVG AVG V(prep) FROM 250m TO 300m
+.meas TRAN PREN_AVG AVG V(pren) FROM 250m TO 300m
+.meas TRAN PREP_PP PP V(prep) FROM 250m TO 300m
+.meas TRAN PREN_PP PP V(pren) FROM 250m TO 300m
+
+.meas TRAN OUTP_AVG AVG V(outp) FROM 250m TO 300m
+.meas TRAN OUTN_AVG AVG V(outn) FROM 250m TO 300m
+.meas TRAN OUTP_PP PP V(outp) FROM 250m TO 300m
+.meas TRAN OUTN_PP PP V(outn) FROM 250m TO 300m
+.meas TRAN OUTP_MIN MIN V(outp) FROM 250m TO 300m
+.meas TRAN OUTP_MAX MAX V(outp) FROM 250m TO 300m
+.meas TRAN OUTN_MIN MIN V(outn) FROM 250m TO 300m
+.meas TRAN OUTN_MAX MAX V(outn) FROM 250m TO 300m
+
+.meas TRAN DROP_P_AVG AVG V(prep,outp) FROM 250m TO 300m
+.meas TRAN DROP_P_MIN MIN V(prep,outp) FROM 250m TO 300m
+.meas TRAN DROP_N_AVG AVG V(outn,pren) FROM 250m TO 300m
+.meas TRAN DROP_N_MIN MIN V(outn,pren) FROM 250m TO 300m
+
+.meas TRAN IREGP_AVG AVG -I(VSENSEP) FROM 250m TO 300m
+.meas TRAN IREGN_AVG AVG I(VSENSEN) FROM 250m TO 300m
+
+.meas TRAN IZP_AVG AVG -I(DZP) FROM 250m TO 300m
+.meas TRAN IZN_AVG AVG -I(DZN) FROM 250m TO 300m
+.meas TRAN IRZP_AVG AVG I(RZP) FROM 250m TO 300m
+.meas TRAN IRZN_AVG AVG -I(RZN) FROM 250m TO 300m
+
+.meas TRAN IBP_AVG AVG Ib(QPASS_P) FROM 250m TO 300m
+.meas TRAN IBN_AVG AVG -Ib(QPASS_N) FROM 250m TO 300m
+.meas TRAN ICP_AVG AVG Ic(QPASS_P) FROM 250m TO 300m
+.meas TRAN ICN_AVG AVG -Ic(QPASS_N) FROM 250m TO 300m
+
+.end

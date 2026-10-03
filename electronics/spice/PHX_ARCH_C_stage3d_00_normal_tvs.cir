@@ -1,0 +1,16 @@
+* Project Phoenix - Architecture C Stage 3D TVS clamp integration
+* TVS model is a conservative linearized SMBJ30A approximation:
+*   BV(max) = 36.8 V at ~1 mA
+*   RS = (48.4-36.8)/(12.4-0.001) = 0.9356 ohm
+* Source impedance includes 5.5 ohm fuse + 100 ohm branch resistor.
+
+* TEST 00: normal-operation TVS leakage margin.
+.param VRAW=60 RIPPLE=2 FLINE=100 VPRE=26.2
+VREG reg 0 SINE({VPRE} 0.1 100)
+DTVS 0 reg SMBJ30A_NEG
+.model SMBJ30A_NEG D(BV=36.8 IBV=1m RS=0.9356 N=1 CJO=500p)
+
+.tran 0 100m 0 10u
+.meas TRAN VREG_MAX MAX V(reg) FROM 50m TO 100m
+.meas TRAN ITVS_MAX MAX -I(DTVS) FROM 50m TO 100m
+.end

@@ -1,0 +1,27 @@
+* Project Phoenix - Architecture C Stage 3D TVS clamp integration
+* TVS model is a conservative linearized SMBJ30A approximation:
+*   BV(max) = 36.8 V at ~1 mA
+*   RS = (48.4-36.8)/(12.4-0.001) = 0.9356 ohm
+* Source impedance includes 5.5 ohm fuse + 100 ohm branch resistor.
+
+* TEST 02: TVS + delayed SCR crowbar coordination.
+.param VRAW=60 RBR=100 RFUSE=5.5 DELAY=10u
+
+VRAW src 0 {VRAW}
+RF src raw {RFUSE}
+RB raw reg {RBR}
+DTVS 0 reg TVS
+.model TVS D(BV=36.8 IBV=1m RS=0.9356 N=1 CJO=500p)
+
+VC ctl 0 PULSE(0 1 {100m+DELAY} 1u 1u 20m 300m)
+SC reg 0 ctl 0 SWC
+.model SWC SW(Ron=0.05 Roff=1G Vt=0.5 Vh=0.1)
+
+.step param DELAY list 3u 10u 25u 50u 100u 200u 500u 1m
+.tran 0 105m 0 0.25u
+
+.meas TRAN VIN_PRE_MAX MAX V(reg) FROM 100m TO {100m+DELAY}
+.meas TRAN VIN_POST_MAX MAX V(reg) FROM {100m+DELAY} TO 101m
+.meas TRAN IFUSE_MAX MAX I(RF) FROM 100m TO 101m
+.meas TRAN ITVSPRE_MAX MAX -I(DTVS) FROM 100m TO {100m+DELAY}
+.end

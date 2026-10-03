@@ -1,0 +1,43 @@
+* Project Phoenix - Architecture C Stage 3 batch verification
+* Requires locally prepared TI LTspice compatibility libraries:
+*   models/ti/ltspice/LM317_TRANS_LTSPICE.LIB
+*   models/ti/ltspice/LM337_N_TRANS_LTSPICE.LIB
+
+* TEST 03P: positive pass-transistor C-E short with delayed crowbar action.
+.param VRAW=60 RIPPLE=2 FLINE=100 RFUSE=5.5 RBR=100 ILOAD=10m
+.param DELAY=200u
+VRAW src 0 SINE({VRAW} {RIPPLE} {FLINE})
+RFUSE src raw 5.5
+RBR raw cp {RBR}
+* Normal bounded preregulator path
+RZ cp zb 3.6k
+DZ 0 zb DZ24
+CZ zb 0 47u
+QPASS cp zb prep TIP41C_BOUNDED
+* C-E fault applied at 100 ms
+VFAULT fctl 0 PULSE(0 1 100m 1u 1u 80m 300m)
+SFAULT cp prep fctl 0 SWFAULT
+* Crowbar across regulator input after DELAY
+VCROW cctl 0 PULSE(0 1 {100m+DELAY} 1u 1u 80m 300m)
+SCROW regin 0 cctl 0 SWCROW
+VSENSE prep regin 0
+
+R1 out adj 120
+R2 adj 0 1.50k
+COUT out 0 10u
+ILOAD out 0 {ILOAD}
+.include "models/ti/ltspice/LM317_TRANS_LTSPICE.LIB"
+XU regin adj out nc317 LM317_TRANS
+.model DZ24 D(BV=24 IBV=5m RS=1 N=1.2 CJO=200p)
+.model TIP41C_BOUNDED NPN(IS=1e-12 BF=15 VAF=75 IKF=1 CJE=300p CJC=150p)
+.model SWFAULT SW(Ron=0.02 Roff=1G Vt=0.5 Vh=0.1)
+.model SWCROW SW(Ron=0.05 Roff=1G Vt=0.5 Vh=0.1)
+
+.step param DELAY list 50u 200u 1m
+.tran 0 130m 0 1u startup
+.meas TRAN DIFF_MAX MAX V(regin,out) FROM 100m TO 105m
+.meas TRAN VIN_MAX MAX V(regin) FROM 100m TO 105m
+.meas TRAN ICROW_MAX MAX I(SCROW) FROM 100m TO 105m
+.meas TRAN IFUSE_MAX MAX I(RFUSE) FROM 100m TO 105m
+.meas TRAN OUT_MIN MIN V(out) FROM 100m TO 110m
+.end
