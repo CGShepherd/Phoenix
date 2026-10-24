@@ -1,0 +1,99 @@
+* Project Phoenix PHX-202 negative preregulator Rev G
+* Physical nominal core-loop screening.
+* TRUE NEGATIVE RAILS: V(out) should regulate to about -18.10 V.
+* Self-contained LT1636 screening surrogate; BJTs and optocoupler have explicit junction/capacitance models.
+
+.param VRAW=55
+.param COUT=10u
+.param CTR=1.0
+.param ILOAD1=4.7m
+.param ILOAD2=8m
+.param VSET=18.10
+.param VCB=18.71
+.param OPTOBF=100
+
+* Core supplies. Controller/reference are idealised in Rev G to isolate the core loop.
+VRAW_SRC raw 0 PULSE(0 {-VRAW} 1m 2m 2m 1 2)
+VAUX aux 0 -18
+VREF ref 0 -2.5
+
+* Load: 4.7 mA initially, rising to 8.0 mA at 120 ms.
+* The load is enabled only while the negative rail is below 0 V; this prevents
+* an ideal current source from charging an unpowered output to an impossible
+* positive voltage. The 100 mV soft transition aids convergence.
+BLOAD 0 out I={if(time<120m,ILOAD1,ILOAD2)*limit((-V(out))/0.1,0,1)}
+COUT1 out 0 {COUT} Rser=0.20
+DOUTCLAMP out 0 DCLAMP
+
+* Actual-output sensing: -18.10 V at out gives approximately -2.50 V at sense.
+RFB_OUT out sense 311.4k
+RFB_GND sense 0 49.9k
+
+* LT1636 single-pole screening macro.
+* gm=1mS and CINT=723pF give approximately 220kHz unity-gain frequency.
+* RINT=200Meg gives approximately 200k open-loop DC gain and a 1.1Hz dominant pole.
+* Schottky clamps prevent hidden integrator wind-up outside the usable output range.
+VCLAMP_HI clamp_hi 0 -0.05
+VCLAMP_LO clamp_lo 0 -17.95
+GINT nint 0 VALUE={1m*(V(sense)-V(ref))}
+RINT nint 0 200Meg
+CINT nint 0 723p IC=0
+DCLAMP_HI nint clamp_hi DFAST
+DCLAMP_LO clamp_lo nint DFAST
+BOUT cmd 0 V=limit(V(nint),-17.95,-0.05)
+ROUT cmd 0 50
+
+* LED drive: op-amp sinks current when cmd goes negative.
+RLED 0 led_a 30.1k
+VLED_SENSE led_a led_k 0
+DLED led_k cmd DOPTOLED
+
+* Optocoupler phototransistor. Photocurrent flows from collector into base;
+* QOPTO provides real B-E/C-B junctions and capacitances. This orientation
+* converts positive LED current into positive driver-base current.
+R_OPTO out opto_c 100k
+QOPTO opto_c opto_b drv_b QOPTNPN
+FPHOTO opto_c opto_b VLED_SENSE {CTR/OPTOBF}
+R_OPTO_BLEED opto_b drv_b 100Meg
+
+* High-voltage NPN driver, default off through RBE2.
+QDRV drv_c drv_b raw QMPSA42
+RBE2 drv_b raw 47k
+RDRIVE drv_c pass_b 24.9k
+
+* PNP pass transistor, default off through RBE1.
+QPASS raw pass_b out QMJE350
+RBE1 pass_b out 10k
+
+* Measurement-only magnitude node.
+BMAG mag 0 V=-V(out)
+
+* Approximate physical models for core-loop screening.
+.model DCLAMP D(Is=1n N=1 Rs=2 Cjo=20p)
+.model DFAST D(Is=1u N=1 Rs=1 Cjo=2p)
+.model DOPTOLED D(Is=2n N=1.9 Rs=8 Cjo=18p M=0.35 Tt=1u Bv=6 Ibv=10u)
+.model QOPTNPN NPN(Is=5p Bf={OPTOBF} Vaf=40 Ikf=5m Br=3 Cje=35p Cjc=8p Tf=12u Tr=25u)
+.model QMPSA42 NPN(Is=20f Bf=60 Vaf=80 Ikf=25m Br=4 Cje=18p Cjc=4p Tf=0.35u Tr=2u Ise=2p Ne=1.7)
+.model QMJE350 PNP(Is=80f Bf=50 Vaf=70 Ikf=100m Br=5 Cje=60p Cjc=25p Tf=0.8u Tr=5u Ise=8p Ne=1.6)
+
+.options plotwinsize=0 reltol=1e-4 abstol=1n vntol=1u
+.tran 0 260m 0 2u startup
+
+* Operating and transient measurements.
+.meas tran VPEAKSTART MAX V(mag) FROM=0 TO=119m
+.meas tran VPRE FIND V(mag) AT=110m
+.meas tran T90 WHEN V(mag)=16.29 RISE=1
+.meas tran VMINSTEP MIN V(mag) FROM=120m TO=200m
+.meas tran VMAXSTEP MAX V(mag) FROM=120m TO=200m
+.meas tran VPOST FIND V(mag) AT=250m
+.meas tran STARTCROWBAR PARAM='VPEAKSTART>VCB'
+.meas tran ANYCROWBAR PARAM='max(VPEAKSTART,VMAXSTEP)>VCB'
+
+* Useful device-current measurements at nominal settled points.
+.meas tran ILED_PRE FIND -I(VLED_SENSE) AT=110m
+.meas tran ILED_POST FIND -I(VLED_SENSE) AT=250m
+.meas tran IPASS_PRE FIND Ic(QPASS) AT=110m
+.meas tran IPASS_POST FIND Ic(QPASS) AT=250m
+.meas tran VCMD_PRE FIND V(cmd) AT=110m
+.meas tran VCMD_POST FIND V(cmd) AT=250m
+.end

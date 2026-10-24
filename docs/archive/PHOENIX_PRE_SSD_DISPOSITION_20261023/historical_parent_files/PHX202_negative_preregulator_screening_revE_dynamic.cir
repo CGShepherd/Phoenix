@@ -1,0 +1,79 @@
+* Project Phoenix PHX-202 negative preregulator screening deck Rev E
+* Dynamic behavioural screening with explicit op-amp dominant pole,
+* slew limiting, optocoupler lag and driver lag.
+* Positive magnitudes represent negative rails.
+
+.param VRAW=48
+.param COUT=10u
+.param CTR=0.40
+.param ROPTO=100k
+.param RDRIVE=24.9k
+.param RBE2=47k
+.param RBE1=10k
+.param RLED=30.1k
+.param VSET=18.10
+.param VCB=18.71
+
+* LT1636-class behavioural parameters
+.param A0=2e5
+.param GBW=220k
+.param ROUT=1k
+.param GM={A0/ROUT}
+.param FP={GBW/A0}
+.param COP={1/(2*pi*ROUT*FP)}
+.param SR=0.075Meg
+.param ISLEW={COP*SR}
+
+Vrawsrc raw 0 {VRAW}
+Vrail rail 0 18
+
+* Static load step: 4.7 mA to 8 mA at 100 ms
+Iload out 0 PWL(0 4.7m 100m 4.7m 100.01m 8m 250m 8m)
+Cout out 0 {COUT} Rser=0.2
+Rdiv out 0 361.3k
+
+* Dominant-pole error amplifier with output clamps and slew limiting.
+Berr 0 cmd I={limit(GM*(VSET-V(out)),-ISLEW,ISLEW)}
+Rcmd cmd 0 {ROUT}
+Ccmd cmd 0 {COP}
+Dlo 0 cmd DCL
+Dhi cmd rail DCL
+.model DCL D(Ron=0.1 Roff=1G Vfwd=0)
+
+* Optocoupler LED current command and finite response.
+.func ILED(x) {max((x-1.15)/RLED,0)}
+Bif 0 ifcmd I={ILED(V(cmd))}
+Rif ifcmd 0 1
+Cif ifcmd 0 20u
+
+* CTR-limited phototransistor current with 20 us-class lag represented above.
+.func IOPTO(x,y,z) {min(CTR*x, max((y-z-0.8)/ROPTO,0))}
+Biop 0 iopcmd I={IOPTO(V(ifcmd),V(raw),V(out))}
+Riop iopcmd 0 1
+Ciop iopcmd 0 20u
+
+* MPSA42-class driver with finite response.
+.func IDRV(x,y,z) {min(20*max(x-0.70/RBE2,0), max((y-z-1.0)/RDRIVE,0))}
+Bdrv 0 drvcmd I={IDRV(V(iopcmd),V(raw),V(out))}
+Rdrv drvcmd 0 1
+Cdrv drvcmd 0 5u
+
+* MJE350-class pass stage, conservative forced beta=10.
+.func IPASS(x) {min(10*max(x-0.65/RBE1,0),50m)}
+Bpass 0 out I={IPASS(V(drvcmd))}
+
+.options plotwinsize=0
+.tran 0 250m 0 0.5u startup
+.step param VRAW list 48 55 60
+.step param COUT list 4.7u 10u 22u
+.step param CTR list 0.4 1.0 2.0
+
+.meas tran VPEAKSTART MAX V(out) FROM=0 TO=99m
+.meas tran VPRE FIND V(out) AT=90m
+.meas tran T90 WHEN V(out)=16.29 RISE=1
+.meas tran VMINSTEP MIN V(out) FROM=100m TO=180m
+.meas tran VMAXSTEP MAX V(out) FROM=100m TO=180m
+.meas tran VPOST FIND V(out) AT=240m
+.meas tran STARTCROWBAR PARAM='VPEAKSTART>VCB'
+.meas tran ANYCROWBAR PARAM='max(VPEAKSTART,VMAXSTEP)>VCB'
+.end

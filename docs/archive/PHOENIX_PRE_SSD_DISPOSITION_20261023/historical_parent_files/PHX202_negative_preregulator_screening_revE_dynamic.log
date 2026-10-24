@@ -1,0 +1,335 @@
+LTspice 26.0.2 for Windows
+Circuit: C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_screening_revE_dynamic.cir
+Start Time: Mon Aug  3 14:02:27 2026
+Options:plotwinsize=0
+
+.step vraw=48 cout=4.7e-06 ctr=0.4
+solver = Normal
+Maximum thread count: 16
+tnom = 27
+temp = 27
+method = trap
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 cout=4.7e-06 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 cout=4.7e-06 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 cout=1e-05 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 cout=1e-05 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 cout=1e-05 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 cout=2.2e-05 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 cout=2.2e-05 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 cout=2.2e-05 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 cout=4.7e-06 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 cout=4.7e-06 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 cout=4.7e-06 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 cout=1e-05 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 cout=1e-05 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 cout=1e-05 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 cout=2.2e-05 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 cout=2.2e-05 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 cout=2.2e-05 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 cout=4.7e-06 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 cout=4.7e-06 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 cout=4.7e-06 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 cout=1e-05 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 cout=1e-05 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 cout=1e-05 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 cout=2.2e-05 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 cout=2.2e-05 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 cout=2.2e-05 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+Total elapsed time: 250.323 seconds.
+
+Files loaded:
+C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_screening_revE_dynamic.cir
+
+
+Measurement: vpeakstart
+  step	MAX(V(out) )	FROM	TO
+     1	-798.652881612	0	0.099
+     2	-798.652881612	0	0.099
+     3	-798.652881612	0	0.099
+     4	-1268.83765421	0	0.099
+     5	-1268.83765421	0	0.099
+     6	-1268.83765421	0	0.099
+     7	-1501.52532624	0	0.099
+     8	-1501.52532624	0	0.099
+     9	-1501.52532624	0	0.099
+    10	-676.039402126	0	0.099
+    11	-676.039402126	0	0.099
+    12	-676.039402126	0	0.099
+    13	-1210.3138179	0	0.099
+    14	-1210.3138179	0	0.099
+    15	-1210.3138179	0	0.099
+    16	-1474.72310892	0	0.099
+    17	-1474.72310892	0	0.099
+    18	-1474.72310892	0	0.099
+    19	-675.718299456	0	0.099
+    20	-675.718299456	0	0.099
+    21	-675.718299456	0	0.099
+    22	-1210.15821558	0	0.099
+    23	-1210.15821558	0	0.099
+    24	-1210.15821558	0	0.099
+    25	-1474.65129955	0	0.099
+    26	-1474.65129955	0	0.099
+    27	-1474.65129955	0	0.099
+
+Measurement: vpre
+  step	V(out) 	at
+     1	-878.41801833	0.09
+     2	-878.41801833	0.09
+     3	-878.41801833	0.09
+     4	-1307.44732718	0.09
+     5	-1307.44732718	0.09
+     6	-1307.44732718	0.09
+     7	-1519.32683991	0.09
+     8	-1519.32683991	0.09
+     9	-1519.32683991	0.09
+    10	-766.606845974	0.09
+    11	-766.606845974	0.09
+    12	-766.606845974	0.09
+    13	-1254.15329543	0.09
+    14	-1254.15329543	0.09
+    15	-1254.15329543	0.09
+    16	-1494.93614479	0.09
+    17	-1494.93614479	0.09
+    18	-1494.93614479	0.09
+    19	-766.284010216	0.09
+    20	-766.284010216	0.09
+    21	-766.284010216	0.09
+    22	-1253.99732691	0.09
+    23	-1253.99732691	0.09
+    24	-1253.99732691	0.09
+    25	-1494.86431224	0.09
+    26	-1494.86431224	0.09
+    27	-1494.86431224	0.09
+
+Measurement: t90
+  step	V(out)=16.29 
+     1	0.218349894135
+     2	0.212600656275
+     3	0.210096282328
+     4	failed
+     5	failed
+     6	failed
+     7	failed
+     8	failed
+     9	failed
+    10	0.192591167535
+    11	0.186713485443
+    12	0.184117289744
+    13	failed
+    14	failed
+    15	failed
+    16	failed
+    17	failed
+    18	failed
+    19	0.192556766057
+    20	0.186679084054
+    21	0.184082887493
+    22	failed
+    23	failed
+    24	failed
+    25	failed
+    26	failed
+    27	failed
+
+Measurement: vminstep
+  step	MIN(V(out) )	FROM	TO
+     1	-789.816162109	0.1	0.18
+     2	-789.816162109	0.1	0.18
+     3	-789.816162109	0.1	0.18
+     4	-1264.55358887	0.1	0.18
+     5	-1264.55358887	0.1	0.18
+     6	-1264.55358887	0.1	0.18
+     7	-1499.54858398	0.1	0.18
+     8	-1499.54858398	0.1	0.18
+     9	-1499.54858398	0.1	0.18
+    10	-666.00592041	0.1	0.18
+    11	-666.00592041	0.1	0.18
+    12	-666.00592041	0.1	0.18
+    13	-1205.44958496	0.1	0.18
+    14	-1205.44958496	0.1	0.18
+    15	-1205.44958496	0.1	0.18
+    16	-1472.4786377	0.1	0.18
+    17	-1472.4786377	0.1	0.18
+    18	-1472.4786377	0.1	0.18
+    19	-665.685058594	0.1	0.18
+    20	-665.685058594	0.1	0.18
+    21	-665.685058594	0.1	0.18
+    22	-1205.29394531	0.1	0.18
+    23	-1205.29394531	0.1	0.18
+    24	-1205.29394531	0.1	0.18
+    25	-1472.40686035	0.1	0.18
+    26	-1472.40686035	0.1	0.18
+    27	-1472.40686035	0.1	0.18
+
+Measurement: vmaxstep
+  step	MAX(V(out) )	FROM	TO
+     1	-154.340103138	0.1	0.18
+     2	-154.340103138	0.1	0.18
+     3	-154.340103138	0.1	0.18
+     4	-951.753631586	0.1	0.18
+     5	-951.753631586	0.1	0.18
+     6	-951.753631586	0.1	0.18
+     7	-1354.15496826	0.1	0.18
+     8	-1354.15496826	0.1	0.18
+     9	-1354.15496826	0.1	0.18
+    10	-1.30446672108	0.1	0.18
+    11	3.81557536479	0.1	0.18
+    12	7.39540863408	0.1	0.18
+    13	-846.743316644	0.1	0.18
+    14	-846.743316644	0.1	0.18
+    15	-846.743316644	0.1	0.18
+    16	-1305.77172851	0.1	0.18
+    17	-1305.77172851	0.1	0.18
+    18	-1305.77172851	0.1	0.18
+    19	-1.22584908871	0.1	0.18
+    20	3.89960945005	0.1	0.18
+    21	7.48354030026	0.1	0.18
+    22	-846.591125482	0.1	0.18
+    23	-846.591125482	0.1	0.18
+    24	-846.591125482	0.1	0.18
+    25	-1305.70062256	0.1	0.18
+    26	-1305.70062256	0.1	0.18
+    27	-1305.70062256	0.1	0.18
+
+Measurement: vpost
+  step	V(out) 	at
+     1	18.2345354895	0.24
+     2	18.2126178571	0.24
+     3	18.4127647817	0.24
+     4	-721.657897937	0.24
+     5	-721.657897937	0.24
+     6	-721.657897937	0.24
+     7	-1246.06610107	0.24
+     8	-1246.06610107	0.24
+     9	-1246.06610107	0.24
+    10	18.2243333113	0.24
+    11	17.9690492255	0.24
+    12	18.0796147586	0.24
+    13	-582.878875719	0.24
+    14	-582.878875719	0.24
+    15	-582.878875719	0.24
+    16	-1181.83807372	0.24
+    17	-1181.83807372	0.24
+    18	-1181.83807372	0.24
+    19	17.9808889827	0.24
+    20	18.1500371996	0.24
+    21	18.152499592	0.24
+    22	-582.729186998	0.24
+    23	-582.729186998	0.24
+    24	-582.729186998	0.24
+    25	-1181.76751708	0.24
+    26	-1181.76751708	0.24
+    27	-1181.76751708	0.24
+
+Measurement: startcrowbar
+  step	'VPEAKSTART>VCB'
+     1	0
+     2	0
+     3	0
+     4	0
+     5	0
+     6	0
+     7	0
+     8	0
+     9	0
+    10	0
+    11	0
+    12	0
+    13	0
+    14	0
+    15	0
+    16	0
+    17	0
+    18	0
+    19	0
+    20	0
+    21	0
+    22	0
+    23	0
+    24	0
+    25	0
+    26	0
+    27	0
+
+Measurement: anycrowbar
+  step	'max(VPEAKSTART,VMAXSTEP)>VCB'
+     1	0
+     2	0
+     3	0
+     4	0
+     5	0
+     6	0
+     7	0
+     8	0
+     9	0
+    10	0
+    11	0
+    12	0
+    13	0
+    14	0
+    15	0
+    16	0
+    17	0
+    18	0
+    19	0
+    20	0
+    21	0
+    22	0
+    23	0
+    24	0
+    25	0
+    26	0
+    27	0

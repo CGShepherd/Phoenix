@@ -1,0 +1,31 @@
+LTspice 26.0.2 for Windows
+Circuit: C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_revF2_corrected_opto.cir
+Start Time: Mon Aug  3 15:02:05 2026
+Options:plotwinsize=0 reltol=1e-4 abstol=1n vntol=1u
+solver = Normal
+Maximum thread count: 16
+tnom = 27
+temp = 27
+method = trap
+abstol = 1e-09
+reltol = 0.0001
+Direct Newton iteration succeeded in finding operating point.
+Total elapsed time: 2.151 seconds.
+
+Files loaded:
+C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_revF2_corrected_opto.cir
+
+vpeakstart: MAX(V(mag) )=-1698.10791016 FROM 0 TO 0.119
+vpre: V(mag) =-1698.10791016 at 0.11
+Measurement "t90" FAIL'ed
+vminstep: MIN(V(mag) )=-1724.23461914 FROM 0.12 TO 0.2
+vmaxstep: MAX(V(mag) )=-1698.12512207 FROM 0.12 TO 0.2
+vpost: V(mag) =-1740.26184082 at 0.25
+startcrowbar: 'VPEAKSTART>VCB'=0
+anycrowbar: 'max(VPEAKSTART,VMAXSTEP)>VCB'=0
+iled_pre: -I(VLED_SENSE) =-0.000557209947146 at 0.11
+iled_post: -I(VLED_SENSE) =-0.000557209947146 at 0.25
+ipass_pre: Ic(QPASS) =-1.28641012171e-09 at 0.11
+ipass_post: Ic(QPASS) =-2.40788966543e-09 at 0.25
+vcmd_pre: V(cmd) =-17.392616272 at 0.11
+vcmd_post: V(cmd) =-17.392616272 at 0.25

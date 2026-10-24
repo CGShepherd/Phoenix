@@ -1,0 +1,35 @@
+LTspice 26.0.2 for Windows
+Circuit: C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_revF1_selfcontained.cir
+Start Time: Mon Aug  3 14:53:57 2026
+Options:plotwinsize=0 reltol=1e-4 abstol=1n vntol=1u
+solver = Normal
+Maximum thread count: 16
+tnom = 27
+temp = 27
+method = trap
+abstol = 1e-09
+reltol = 0.0001
+C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_revF1_selfcontained.cir(16): WARNING: Specified period is not longer than the sum of Trise, Tfall, and Ton. Increasing period to 1.004.
+
+VRAW_SRC raw 0 PULSE(0 {-VRAW} 1m 2m 2m 1 1)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Direct Newton iteration succeeded in finding operating point.
+Total elapsed time: 2.562 seconds.
+
+Files loaded:
+C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_revF1_selfcontained.cir
+
+vpeakstart: MAX(V(mag) )=35.7327880859 FROM 0 TO 0.119
+vpre: V(mag) =19.0032007134 at 0.11
+t90: V(mag)=16.29  AT 0.00463010671416
+vminstep: MIN(V(mag) )=18.0541229248 FROM 0.12 TO 0.2
+vmaxstep: MAX(V(mag) )=24.006772995 FROM 0.12 TO 0.2
+vpost: V(mag) =20.0384768615 at 0.25
+startcrowbar: 'VPEAKSTART>VCB'=1
+anycrowbar: 'max(VPEAKSTART,VMAXSTEP)>VCB'=1
+iled_pre: -I(VLED_SENSE) =-3.51983731051e-09 at 0.11
+iled_post: -I(VLED_SENSE) =-3.51983731051e-09 at 0.25
+ipass_pre: Ic(QPASS) =-3.29919546651e-09 at 0.11
+ipass_post: Ic(QPASS) =-0.0554093876796 at 0.25
+vcmd_pre: V(cmd) =-0.0499959811568 at 0.11
+vcmd_post: V(cmd) =-0.0499959811568 at 0.25

@@ -1,0 +1,46 @@
+* Project Phoenix PHX-202 negative preregulator screening deck Rev D2
+* Behavioural 4.7 mA to 8 mA load-step screening only.
+* Positive magnitudes represent negative rails.
+
+.param VRAW=48
+.param COUT=10u
+.param CTR=0.40
+.param ROPTO=100k
+.param RDRIVE=24.9k
+.param RBE2=47k
+.param RBE1=10k
+.param RLED=30.1k
+.param VSET=18.10
+.param VCB=18.71
+.param A0=2e5
+.param ROUT=1k
+.param CCOMP=723p
+
+Vrawsrc raw 0 {VRAW}
+Iload out 0 PWL(0 4.7m 100m 4.7m 100.01m 8m 220m 8m)
+Cout out 0 {COUT} Rser=0.2
+Rdiv out 0 361.3k
+
+Btarget target 0 V=limit(A0*(VSET-V(out)),0,18)
+Rcomp target cmd {ROUT}
+Ccomp cmd 0 {CCOMP}
+Rcmd cmd 0 100Meg
+
+.func ILED(x) {max((x-1.15)/RLED,0)}
+.func IOPTO(x,y,z) {min(CTR*ILED(x), max((y-z-0.8)/ROPTO,0))}
+.func IDRV(x,y,z) {min(20*max(IOPTO(x,y,z)-0.70/RBE2,0), max((y-z-1.0)/RDRIVE,0))}
+.func IPASS(x,y,z) {min(10*max(IDRV(x,y,z)-0.65/RBE1,0),50m)}
+Bpass 0 out I={IPASS(V(cmd),V(raw),V(out))}
+
+.options plotwinsize=0
+.tran 0 220m 0 1u startup
+.step param VRAW list 48 55 60
+.step param COUT list 4.7u 10u 22u
+.step param CTR list 0.4 1.0 2.0
+
+.meas tran VPRE FIND V(out) AT=90m
+.meas tran VMINSTEP MIN V(out) FROM=100m TO=160m
+.meas tran VMAXSTEP MAX V(out) FROM=100m TO=160m
+.meas tran VPOST FIND V(out) AT=210m
+.meas tran CROWBAR PARAM='VMAXSTEP>VCB'
+.end

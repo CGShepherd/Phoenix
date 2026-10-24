@@ -1,0 +1,13 @@
+LTspice 26.0.2 for Windows
+Circuit: C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_revF_physical_nominal.cir
+Start Time: Mon Aug  3 14:49:12 2026
+Options:plotwinsize=0 reltol=1e-4 abstol=1n vntol=1u
+C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_revF_physical_nominal.cir(30): This sub-circuit name is not defined.
+XU1 ref sense 0 aux cmd UniversalOpamp2 Avol=2Meg GBW=220k Slew=0.07Meg Ilimit=18m Rail=10m Vos=0
+                        ^^^^^^^^^^^^^^^
+C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_revF_physical_nominal.cir(60): Ignoring unknown model parameter. This may or may not be a problem.
+.model QMPSA42 NPN(Is=20f Bf=60 Vaf=80 Ikf=25m Br=4 Cje=18p Cjc=4p Tf=0.35u Tr=2u Bv=300 Ise=2p Ne=1.7)
+                                                                                  ^^^^^^^
+C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_revF_physical_nominal.cir(61): Ignoring unknown model parameter. This may or may not be a problem.
+.model QMJE350 PNP(Is=80f Bf=50 Vaf=70 Ikf=100m Br=5 Cje=60p Cjc=25p Tf=0.8u Tr=5u Bv=300 Ise=8p Ne=1.6)
+                                                                                   ^^^^^^^

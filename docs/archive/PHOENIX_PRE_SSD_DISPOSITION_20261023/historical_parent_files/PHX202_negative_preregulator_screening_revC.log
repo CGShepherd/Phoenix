@@ -1,0 +1,1581 @@
+LTspice 26.0.2 for Windows
+Circuit: C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_screening_revC.cir
+Start Time: Mon Aug  3 12:28:38 2026
+Options:plotwinsize=0
+
+.step vraw=48 iload=0 cout=4.7e-06 ctr=0.4
+solver = Normal
+Maximum thread count: 16
+tnom = 27
+temp = 27
+method = trap
+Laplace(Eol): Window=7.28509 Nfft=16384
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 iload=0 cout=4.7e-06 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 iload=0 cout=4.7e-06 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 iload=0.0047 cout=4.7e-06 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.0047 cout=4.7e-06 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.0047 cout=4.7e-06 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.008 cout=4.7e-06 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.008 cout=4.7e-06 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.008 cout=4.7e-06 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.01 cout=4.7e-06 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.01 cout=4.7e-06 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.01 cout=4.7e-06 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0 cout=1e-05 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 iload=0 cout=1e-05 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 iload=0 cout=1e-05 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 iload=0.0047 cout=1e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.0047 cout=1e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.0047 cout=1e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.008 cout=1e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.008 cout=1e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.008 cout=1e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.01 cout=1e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.01 cout=1e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.01 cout=1e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0 cout=2.2e-05 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 iload=0 cout=2.2e-05 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 iload=0 cout=2.2e-05 ctr=0.4
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 iload=0.0047 cout=2.2e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.0047 cout=2.2e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.0047 cout=2.2e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.008 cout=2.2e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.008 cout=2.2e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.008 cout=2.2e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.01 cout=2.2e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.01 cout=2.2e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.01 cout=2.2e-05 ctr=0.4
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0 cout=4.7e-06 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 iload=0 cout=4.7e-06 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 iload=0 cout=4.7e-06 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 iload=0.0047 cout=4.7e-06 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.0047 cout=4.7e-06 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.0047 cout=4.7e-06 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.008 cout=4.7e-06 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.008 cout=4.7e-06 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.008 cout=4.7e-06 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.01 cout=4.7e-06 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.01 cout=4.7e-06 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.01 cout=4.7e-06 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0 cout=1e-05 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 iload=0 cout=1e-05 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 iload=0 cout=1e-05 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 iload=0.0047 cout=1e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.0047 cout=1e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.0047 cout=1e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.008 cout=1e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.008 cout=1e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.008 cout=1e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.01 cout=1e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.01 cout=1e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.01 cout=1e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0 cout=2.2e-05 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 iload=0 cout=2.2e-05 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 iload=0 cout=2.2e-05 ctr=1
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 iload=0.0047 cout=2.2e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.0047 cout=2.2e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.0047 cout=2.2e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.008 cout=2.2e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.008 cout=2.2e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.008 cout=2.2e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.01 cout=2.2e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.01 cout=2.2e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.01 cout=2.2e-05 ctr=1
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0 cout=4.7e-06 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 iload=0 cout=4.7e-06 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 iload=0 cout=4.7e-06 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 iload=0.0047 cout=4.7e-06 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.0047 cout=4.7e-06 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.0047 cout=4.7e-06 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.008 cout=4.7e-06 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.008 cout=4.7e-06 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.008 cout=4.7e-06 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.01 cout=4.7e-06 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.01 cout=4.7e-06 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.01 cout=4.7e-06 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0 cout=1e-05 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 iload=0 cout=1e-05 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 iload=0 cout=1e-05 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 iload=0.0047 cout=1e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.0047 cout=1e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.0047 cout=1e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.008 cout=1e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.008 cout=1e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.008 cout=1e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.01 cout=1e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.01 cout=1e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.01 cout=1e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0 cout=2.2e-05 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=55 iload=0 cout=2.2e-05 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=60 iload=0 cout=2.2e-05 ctr=2
+Direct Newton iteration succeeded in finding operating point.
+
+.step vraw=48 iload=0.0047 cout=2.2e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.0047 cout=2.2e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.0047 cout=2.2e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.008 cout=2.2e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.008 cout=2.2e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.008 cout=2.2e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=48 iload=0.01 cout=2.2e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=55 iload=0.01 cout=2.2e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+
+.step vraw=60 iload=0.01 cout=2.2e-05 ctr=2
+Direct Newton iteration failed to find operating point.
+Starting Gmin stepping
+Gmin stepping succeeded in finding the operating point.
+
+Total elapsed time: 1963.142 seconds.
+
+Files loaded:
+C:\Users\chris\Dropbox\000_Projects\000_Audio\Phoenix\PHX202_negative_preregulator_screening_revC.cir
+
+
+Measurement: vpeakstart
+  step	MAX(V(out) )	FROM	TO
+     1	45.044052124	0	0.0999
+     2	51.9327011108	0	0.0999
+     3	56.8143119812	0	0.0999
+     4	33.4391517639	0	0.0999
+     5	40.3899497986	0	0.0999
+     6	45.3548088074	0	0.0999
+     7	25.2783927917	0	0.0999
+     8	32.2291931152	0	0.0999
+     9	37.1940498352	0	0.0999
+    10	20.3324794769	0	0.0999
+    11	27.2832794189	0	0.0999
+    12	32.248134613	0	0.0999
+    13	44.2769756317	0	0.0999
+    14	50.5175209045	0	0.0999
+    15	54.8074989319	0	0.0999
+    16	32.6082878113	0	0.0999
+    17	39.4379196167	0	0.0999
+    18	44.3162288666	0	0.0999
+    19	24.4475297928	0	0.0999
+    20	31.2771625519	0	0.0999
+    21	36.1554698944	0	0.0999
+    22	19.5016155243	0	0.0999
+    23	26.3312482834	0	0.0999
+    24	31.2095565796	0	0.0999
+    25	37.8838996887	0	0.0999
+    26	43.7274208069	0	0.0999
+    27	47.9013652801	0	0.0999
+    28	25.8463907242	0	0.0999
+    29	31.689912796	0	0.0999
+    30	35.8638572693	0	0.0999
+    31	17.6856336594	0	0.0999
+    32	23.5291557312	0	0.0999
+    33	27.7031002045	0	0.0999
+    34	12.7397193909	0	0.0999
+    35	18.5832424164	0	0.0999
+    36	22.757185936	0	0.0999
+    37	45.044052124	0	0.0999
+    38	51.9327011108	0	0.0999
+    39	56.8143119812	0	0.0999
+    40	33.4391517639	0	0.0999
+    41	40.3899497986	0	0.0999
+    42	45.3548088074	0	0.0999
+    43	25.2783927917	0	0.0999
+    44	32.2291931152	0	0.0999
+    45	37.1940498352	0	0.0999
+    46	20.3324794769	0	0.0999
+    47	27.2832794189	0	0.0999
+    48	32.248134613	0	0.0999
+    49	44.2769756317	0	0.0999
+    50	50.5175209045	0	0.0999
+    51	54.8074989319	0	0.0999
+    52	32.6082878113	0	0.0999
+    53	39.4379196167	0	0.0999
+    54	44.3162288666	0	0.0999
+    55	24.4475297928	0	0.0999
+    56	31.2771625519	0	0.0999
+    57	36.1554698944	0	0.0999
+    58	19.5016155243	0	0.0999
+    59	26.3312482834	0	0.0999
+    60	31.2095565796	0	0.0999
+    61	37.8838996887	0	0.0999
+    62	43.7274208069	0	0.0999
+    63	47.9013652801	0	0.0999
+    64	25.8463907242	0	0.0999
+    65	31.689912796	0	0.0999
+    66	35.8638572693	0	0.0999
+    67	17.6856336594	0	0.0999
+    68	23.5291557312	0	0.0999
+    69	27.7031002045	0	0.0999
+    70	12.7397193909	0	0.0999
+    71	18.5832424164	0	0.0999
+    72	22.757185936	0	0.0999
+    73	45.044052124	0	0.0999
+    74	51.9327011108	0	0.0999
+    75	56.8143119812	0	0.0999
+    76	33.4391517639	0	0.0999
+    77	40.3899497986	0	0.0999
+    78	45.3548088074	0	0.0999
+    79	25.2783927917	0	0.0999
+    80	32.2291931152	0	0.0999
+    81	37.1940498352	0	0.0999
+    82	20.3324794769	0	0.0999
+    83	27.2832794189	0	0.0999
+    84	32.248134613	0	0.0999
+    85	44.2769756317	0	0.0999
+    86	50.5175209045	0	0.0999
+    87	54.8074989319	0	0.0999
+    88	32.6082878113	0	0.0999
+    89	39.4379196167	0	0.0999
+    90	44.3162288666	0	0.0999
+    91	24.4475297928	0	0.0999
+    92	31.2771625519	0	0.0999
+    93	36.1554698944	0	0.0999
+    94	19.5016155243	0	0.0999
+    95	26.3312482834	0	0.0999
+    96	31.2095565796	0	0.0999
+    97	37.8838996887	0	0.0999
+    98	43.7274208069	0	0.0999
+    99	47.9013652801	0	0.0999
+   100	25.8463907242	0	0.0999
+   101	31.689912796	0	0.0999
+   102	35.8638572693	0	0.0999
+   103	17.6856336594	0	0.0999
+   104	23.5291557312	0	0.0999
+   105	27.7031002045	0	0.0999
+   106	12.7397193909	0	0.0999
+   107	18.5832424164	0	0.0999
+   108	22.757185936	0	0.0999
+
+Measurement: vpre
+  step	V(out) 	at
+     1	44.9468833923	0.09
+     2	51.4425888062	0.09
+     3	56.0598773956	0.09
+     4	33.4272827148	0.09
+     5	40.3763523102	0.09
+     6	45.3399734497	0.09
+     7	25.2665262222	0.09
+     8	32.2155937195	0.09
+     9	37.1792144775	0.09
+    10	20.3206110001	0.09
+    11	27.2696809769	0.09
+    12	32.2333015442	0.09
+    13	43.8861598968	0.09
+    14	50.4841751099	0.09
+    15	54.6665496826	0.09
+    16	32.1949310303	0.09
+    17	38.9642810821	0.09
+    18	43.7995319366	0.09
+    19	24.0341730118	0.09
+    20	30.8035240173	0.09
+    21	35.6387748718	0.09
+    22	19.088259697	0.09
+    23	25.8576107025	0.09
+    24	30.6928606033	0.09
+    25	36.4496746063	0.09
+    26	42.0719718933	0.09
+    27	46.0879001617	0.09
+    28	24.3294277191	0.09
+    29	29.9517259598	0.09
+    30	33.9676532745	0.09
+    31	16.1686706543	0.09
+    32	21.7909688949	0.09
+    33	25.8068962097	0.09
+    34	11.2227563858	0.09
+    35	16.8450546265	0.09
+    36	20.8609819412	0.09
+    37	44.9468833923	0.09
+    38	51.4425888062	0.09
+    39	56.0598773956	0.09
+    40	33.4272827148	0.09
+    41	40.3763523102	0.09
+    42	45.3399734497	0.09
+    43	25.2665262222	0.09
+    44	32.2155937195	0.09
+    45	37.1792144775	0.09
+    46	20.3206110001	0.09
+    47	27.2696809769	0.09
+    48	32.2333015442	0.09
+    49	43.8861598968	0.09
+    50	50.4841751099	0.09
+    51	54.6665496826	0.09
+    52	32.1949310303	0.09
+    53	38.9642810821	0.09
+    54	43.7995319366	0.09
+    55	24.0341730118	0.09
+    56	30.8035240173	0.09
+    57	35.6387748718	0.09
+    58	19.088259697	0.09
+    59	25.8576107025	0.09
+    60	30.6928606033	0.09
+    61	36.4496746063	0.09
+    62	42.0719718933	0.09
+    63	46.0879001617	0.09
+    64	24.3294277191	0.09
+    65	29.9517259598	0.09
+    66	33.9676532745	0.09
+    67	16.1686706543	0.09
+    68	21.7909688949	0.09
+    69	25.8068962097	0.09
+    70	11.2227563858	0.09
+    71	16.8450546265	0.09
+    72	20.8609819412	0.09
+    73	44.9468833923	0.09
+    74	51.4425888062	0.09
+    75	56.0598773956	0.09
+    76	33.4272827148	0.09
+    77	40.3763523102	0.09
+    78	45.3399734497	0.09
+    79	25.2665262222	0.09
+    80	32.2155937195	0.09
+    81	37.1792144775	0.09
+    82	20.3206110001	0.09
+    83	27.2696809769	0.09
+    84	32.2333015442	0.09
+    85	43.8861598968	0.09
+    86	50.4841751099	0.09
+    87	54.6665496826	0.09
+    88	32.1949310303	0.09
+    89	38.9642810821	0.09
+    90	43.7995319366	0.09
+    91	24.0341730118	0.09
+    92	30.8035240173	0.09
+    93	35.6387748718	0.09
+    94	19.088259697	0.09
+    95	25.8576107025	0.09
+    96	30.6928606033	0.09
+    97	36.4496746063	0.09
+    98	42.0719718933	0.09
+    99	46.0879001617	0.09
+   100	24.3294277191	0.09
+   101	29.9517259598	0.09
+   102	33.9676532745	0.09
+   103	16.1686706543	0.09
+   104	21.7909688949	0.09
+   105	25.8068962097	0.09
+   106	11.2227563858	0.09
+   107	16.8450546265	0.09
+   108	20.8609819412	0.09
+
+Measurement: t90
+  step	V(out)=16.29 
+     1	0.00522318930663
+     2	0.00437558531017
+     3	0.00392273843052
+     4	0.0118871035142
+     5	0.00951544712051
+     6	0.00834996152439
+     7	0.0193908411823
+     8	0.0143185773574
+     9	0.0121792829661
+    10	0.0286652171429
+    11	0.0186334808871
+    12	0.0153155172261
+    13	0.0111012746229
+    14	0.00929794026385
+    15	0.00833448090382
+    16	0.02528043
+    17	0.0202343522896
+    18	0.0177545966234
+    19	0.0412458273299
+    20	0.030453779645
+    21	0.025902089009
+    22	0.0609785409303
+    23	0.0396344249786
+    24	0.0325749263127
+    25	0.0244101480866
+    26	0.0204428957101
+    27	0.0183233329592
+    28	0.0556049489157
+    29	0.0445035755173
+    30	0.0390481125714
+    31	0.0907288200001
+    32	0.066986315065
+    33	0.0569725966337
+    34	failed
+    35	0.0871837313208
+    36	0.0716528367321
+    37	0.00522318930663
+    38	0.00437558531017
+    39	0.00392273843052
+    40	0.0118871035142
+    41	0.00951544712051
+    42	0.00834996152439
+    43	0.0193908411823
+    44	0.0143185773574
+    45	0.0121792829661
+    46	0.0286652171429
+    47	0.0186334808871
+    48	0.0153155172261
+    49	0.0111012746229
+    50	0.00929794026385
+    51	0.00833448090382
+    52	0.02528043
+    53	0.0202343522896
+    54	0.0177545966234
+    55	0.0412458273299
+    56	0.030453779645
+    57	0.025902089009
+    58	0.0609785409303
+    59	0.0396344249786
+    60	0.0325749263127
+    61	0.0244101480866
+    62	0.0204428957101
+    63	0.0183233329592
+    64	0.0556049489157
+    65	0.0445035755173
+    66	0.0390481125714
+    67	0.0907288200001
+    68	0.066986315065
+    69	0.0569725966337
+    70	failed
+    71	0.0871837313208
+    72	0.0716528367321
+    73	0.00522318930663
+    74	0.00437558531017
+    75	0.00392273843052
+    76	0.0118871035142
+    77	0.00951544712051
+    78	0.00834996152439
+    79	0.0193908411823
+    80	0.0143185773574
+    81	0.0121792829661
+    82	0.0286652171429
+    83	0.0186334808871
+    84	0.0153155172261
+    85	0.0111012746229
+    86	0.00929794026385
+    87	0.00833448090382
+    88	0.02528043
+    89	0.0202343522896
+    90	0.0177545966234
+    91	0.0412458273299
+    92	0.030453779645
+    93	0.025902089009
+    94	0.0609785409303
+    95	0.0396344249786
+    96	0.0325749263127
+    97	0.0244101480866
+    98	0.0204428957101
+    99	0.0183233329592
+   100	0.0556049489157
+   101	0.0445035755173
+   102	0.0390481125714
+   103	0.0907288200001
+   104	0.066986315065
+   105	0.0569725966337
+   106	failed
+   107	0.0871837313208
+   108	0.0716528367321
+
+Measurement: startcrowbar
+  step	'VPEAKSTART>VCB'
+     1	1
+     2	1
+     3	1
+     4	1
+     5	1
+     6	1
+     7	1
+     8	1
+     9	1
+    10	1
+    11	1
+    12	1
+    13	1
+    14	1
+    15	1
+    16	1
+    17	1
+    18	1
+    19	1
+    20	1
+    21	1
+    22	1
+    23	1
+    24	1
+    25	1
+    26	1
+    27	1
+    28	1
+    29	1
+    30	1
+    31	0
+    32	1
+    33	1
+    34	0
+    35	0
+    36	1
+    37	1
+    38	1
+    39	1
+    40	1
+    41	1
+    42	1
+    43	1
+    44	1
+    45	1
+    46	1
+    47	1
+    48	1
+    49	1
+    50	1
+    51	1
+    52	1
+    53	1
+    54	1
+    55	1
+    56	1
+    57	1
+    58	1
+    59	1
+    60	1
+    61	1
+    62	1
+    63	1
+    64	1
+    65	1
+    66	1
+    67	0
+    68	1
+    69	1
+    70	0
+    71	0
+    72	1
+    73	1
+    74	1
+    75	1
+    76	1
+    77	1
+    78	1
+    79	1
+    80	1
+    81	1
+    82	1
+    83	1
+    84	1
+    85	1
+    86	1
+    87	1
+    88	1
+    89	1
+    90	1
+    91	1
+    92	1
+    93	1
+    94	1
+    95	1
+    96	1
+    97	1
+    98	1
+    99	1
+   100	1
+   101	1
+   102	1
+   103	0
+   104	1
+   105	1
+   106	0
+   107	0
+   108	1
+
+Measurement: vminstep
+  step	MIN(V(out) )	FROM	TO
+     1	1.74242138867	0.1	0.16
+     2	7.97580170636	0.1	0.16
+     3	12.4066267014	0.1	0.16
+     4	25.3339633942	0.1	0.16
+     5	26.0313606263	0.1	0.16
+     6	-0.518640935421	0.1	0.16
+     7	17.1732063293	0.1	0.16
+     8	24.1252861023	0.1	0.16
+     9	29.0910587311	0.1	0.16
+    10	12.2272925377	0.1	0.16
+    11	19.1793727875	0.1	0.16
+    12	24.1451454163	0.1	0.16
+    13	23.938791275	0.1	0.16
+    14	29.8799695969	0.1	0.16
+    15	33.9820919037	0.1	0.16
+    16	25.9346876144	0.1	0.16
+    17	32.875995636	0.1	0.16
+    18	27.8007707596	0.1	0.16
+    19	17.7739295959	0.1	0.16
+    20	24.7152376175	0.1	0.16
+    21	29.6733150482	0.1	0.16
+    22	12.8280158043	0.1	0.16
+    23	19.7693243027	0.1	0.16
+    24	24.7274007797	0.1	0.16
+    25	33.1731262207	0.1	0.16
+    26	36.8287563324	0.1	0.16
+    27	39.7161331177	0.1	0.16
+    28	25.4775085449	0.1	0.16
+    29	31.7059078217	0.1	0.16
+    30	35.8813056946	0.1	0.16
+    31	17.3167505264	0.1	0.16
+    32	23.5451488495	0.1	0.16
+    33	27.7205486298	0.1	0.16
+    34	12.3708367348	0.1	0.16
+    35	18.5992355347	0.1	0.16
+    36	22.7746334076	0.1	0.16
+    37	1.74242138867	0.1	0.16
+    38	7.97580170636	0.1	0.16
+    39	12.4066267014	0.1	0.16
+    40	25.3339633942	0.1	0.16
+    41	26.0313606263	0.1	0.16
+    42	-0.518640935421	0.1	0.16
+    43	17.1732063293	0.1	0.16
+    44	24.1252861023	0.1	0.16
+    45	29.0910587311	0.1	0.16
+    46	12.2272925377	0.1	0.16
+    47	19.1793727875	0.1	0.16
+    48	24.1451454163	0.1	0.16
+    49	23.938791275	0.1	0.16
+    50	29.8799695969	0.1	0.16
+    51	33.9820919037	0.1	0.16
+    52	25.9346876144	0.1	0.16
+    53	32.875995636	0.1	0.16
+    54	27.8007707596	0.1	0.16
+    55	17.7739295959	0.1	0.16
+    56	24.7152376175	0.1	0.16
+    57	29.6733150482	0.1	0.16
+    58	12.8280158043	0.1	0.16
+    59	19.7693243027	0.1	0.16
+    60	24.7274007797	0.1	0.16
+    61	33.1731262207	0.1	0.16
+    62	36.8287563324	0.1	0.16
+    63	39.7161331177	0.1	0.16
+    64	25.4775085449	0.1	0.16
+    65	31.7059078217	0.1	0.16
+    66	35.8813056946	0.1	0.16
+    67	17.3167505264	0.1	0.16
+    68	23.5451488495	0.1	0.16
+    69	27.7205486298	0.1	0.16
+    70	12.3708367348	0.1	0.16
+    71	18.5992355347	0.1	0.16
+    72	22.7746334076	0.1	0.16
+    73	1.74242138867	0.1	0.16
+    74	7.97580170636	0.1	0.16
+    75	12.4066267014	0.1	0.16
+    76	25.3339633942	0.1	0.16
+    77	26.0313606263	0.1	0.16
+    78	-0.518640935421	0.1	0.16
+    79	17.1732063293	0.1	0.16
+    80	24.1252861023	0.1	0.16
+    81	29.0910587311	0.1	0.16
+    82	12.2272925377	0.1	0.16
+    83	19.1793727875	0.1	0.16
+    84	24.1451454163	0.1	0.16
+    85	23.938791275	0.1	0.16
+    86	29.8799695969	0.1	0.16
+    87	33.9820919037	0.1	0.16
+    88	25.9346876144	0.1	0.16
+    89	32.875995636	0.1	0.16
+    90	27.8007707596	0.1	0.16
+    91	17.7739295959	0.1	0.16
+    92	24.7152376175	0.1	0.16
+    93	29.6733150482	0.1	0.16
+    94	12.8280158043	0.1	0.16
+    95	19.7693243027	0.1	0.16
+    96	24.7274007797	0.1	0.16
+    97	33.1731262207	0.1	0.16
+    98	36.8287563324	0.1	0.16
+    99	39.7161331177	0.1	0.16
+   100	25.4775085449	0.1	0.16
+   101	31.7059078217	0.1	0.16
+   102	35.8813056946	0.1	0.16
+   103	17.3167505264	0.1	0.16
+   104	23.5451488495	0.1	0.16
+   105	27.7205486298	0.1	0.16
+   106	12.3708367348	0.1	0.16
+   107	18.5992355347	0.1	0.16
+   108	22.7746334076	0.1	0.16
+
+Measurement: vmaxstep
+  step	MAX(V(out) )	FROM	TO
+     1	44.6829719543	0.1	0.16
+     2	51.140537262	0.1	0.16
+     3	55.7307167053	0.1	0.16
+     4	33.4392280579	0.1	0.16
+     5	40.3900375366	0.1	0.16
+     6	45.3549041748	0.1	0.16
+     7	25.2784690857	0.1	0.16
+     8	32.2292785645	0.1	0.16
+     9	37.1941452026	0.1	0.16
+    10	20.3325557709	0.1	0.16
+    11	27.2833652496	0.1	0.16
+    12	32.2482299805	0.1	0.16
+    13	44.2801780701	0.1	0.16
+    14	50.3446388245	0.1	0.16
+    15	54.5154533386	0.1	0.16
+    16	32.6116752625	0.1	0.16
+    17	39.4418029785	0.1	0.16
+    18	44.3204650879	0.1	0.16
+    19	24.4509181976	0.1	0.16
+    20	31.2810440063	0.1	0.16
+    21	36.1597061157	0.1	0.16
+    22	19.5050048828	0.1	0.16
+    23	26.3351306915	0.1	0.16
+    24	31.2137928009	0.1	0.16
+    25	37.8972396851	0.1	0.16
+    26	43.7719116211	0.1	0.16
+    27	48.022026062	0.1	0.16
+    28	25.8605289459	0.1	0.16
+    29	32.0622768402	0.1	0.16
+    30	36.7656822205	0.1	0.16
+    31	17.6997699738	0.1	0.16
+    32	23.901517868	0.1	0.16
+    33	28.6049232483	0.1	0.16
+    34	12.7538566589	0.1	0.16
+    35	18.9556035995	0.1	0.16
+    36	23.6590089798	0.1	0.16
+    37	44.6829719543	0.1	0.16
+    38	51.140537262	0.1	0.16
+    39	55.7307167053	0.1	0.16
+    40	33.4392280579	0.1	0.16
+    41	40.3900375366	0.1	0.16
+    42	45.3549041748	0.1	0.16
+    43	25.2784690857	0.1	0.16
+    44	32.2292785645	0.1	0.16
+    45	37.1941452026	0.1	0.16
+    46	20.3325557709	0.1	0.16
+    47	27.2833652496	0.1	0.16
+    48	32.2482299805	0.1	0.16
+    49	44.2801780701	0.1	0.16
+    50	50.3446388245	0.1	0.16
+    51	54.5154533386	0.1	0.16
+    52	32.6116752625	0.1	0.16
+    53	39.4418029785	0.1	0.16
+    54	44.3204650879	0.1	0.16
+    55	24.4509181976	0.1	0.16
+    56	31.2810440063	0.1	0.16
+    57	36.1597061157	0.1	0.16
+    58	19.5050048828	0.1	0.16
+    59	26.3351306915	0.1	0.16
+    60	31.2137928009	0.1	0.16
+    61	37.8972396851	0.1	0.16
+    62	43.7719116211	0.1	0.16
+    63	48.022026062	0.1	0.16
+    64	25.8605289459	0.1	0.16
+    65	32.0622768402	0.1	0.16
+    66	36.7656822205	0.1	0.16
+    67	17.6997699738	0.1	0.16
+    68	23.901517868	0.1	0.16
+    69	28.6049232483	0.1	0.16
+    70	12.7538566589	0.1	0.16
+    71	18.9556035995	0.1	0.16
+    72	23.6590089798	0.1	0.16
+    73	44.6829719543	0.1	0.16
+    74	51.140537262	0.1	0.16
+    75	55.7307167053	0.1	0.16
+    76	33.4392280579	0.1	0.16
+    77	40.3900375366	0.1	0.16
+    78	45.3549041748	0.1	0.16
+    79	25.2784690857	0.1	0.16
+    80	32.2292785645	0.1	0.16
+    81	37.1941452026	0.1	0.16
+    82	20.3325557709	0.1	0.16
+    83	27.2833652496	0.1	0.16
+    84	32.2482299805	0.1	0.16
+    85	44.2801780701	0.1	0.16
+    86	50.3446388245	0.1	0.16
+    87	54.5154533386	0.1	0.16
+    88	32.6116752625	0.1	0.16
+    89	39.4418029785	0.1	0.16
+    90	44.3204650879	0.1	0.16
+    91	24.4509181976	0.1	0.16
+    92	31.2810440063	0.1	0.16
+    93	36.1597061157	0.1	0.16
+    94	19.5050048828	0.1	0.16
+    95	26.3351306915	0.1	0.16
+    96	31.2137928009	0.1	0.16
+    97	37.8972396851	0.1	0.16
+    98	43.7719116211	0.1	0.16
+    99	48.022026062	0.1	0.16
+   100	25.8605289459	0.1	0.16
+   101	32.0622768402	0.1	0.16
+   102	36.7656822205	0.1	0.16
+   103	17.6997699738	0.1	0.16
+   104	23.901517868	0.1	0.16
+   105	28.6049232483	0.1	0.16
+   106	12.7538566589	0.1	0.16
+   107	18.9556035995	0.1	0.16
+   108	23.6590089798	0.1	0.16
+
+Measurement: vpost
+  step	V(out) 	at
+     1	11.6580696103	0.24
+     2	22.1202363969	0.24
+     3	33.1301021577	0.24
+     4	17.106516838	0.24
+     5	15.2593150141	0.24
+     6	15.8651499746	0.24
+     7	17.1265163422	0.24
+     8	24.0786037445	0.24
+     9	18.7988357547	0.24
+    10	12.1806020737	0.24
+    11	19.1326904297	0.24
+    12	24.0984668732	0.24
+    13	6.91787171347	0.24
+    14	3.11577796941	0.24
+    15	7.12806797032	0.24
+    16	25.3127174377	0.24
+    17	25.0570430755	0.24
+    18	20.4255914689	0.24
+    19	17.1519594193	0.24
+    20	24.1036224365	0.24
+    21	13.3320922853	0.24
+    22	12.2060456276	0.24
+    23	19.1577091217	0.24
+    24	24.1231822968	0.24
+    25	20.9011173249	0.24
+    26	24.5201377869	0.24
+    27	27.3786010742	0.24
+    28	25.3309621811	0.24
+    29	21.9169044495	0.24
+    30	16.8541679383	0.24
+    31	17.1702041626	0.24
+    32	24.0378637314	0.24
+    33	28.9433355331	0.24
+    34	12.2242903709	0.24
+    35	19.0919494629	0.24
+    36	23.997420311	0.24
+    37	11.6580696103	0.24
+    38	22.1202630998	0.24
+    39	33.1301021577	0.24
+    40	17.1068811416	0.24
+    41	15.2541990283	0.24
+    42	15.8783717153	0.24
+    43	17.1265163422	0.24
+    44	24.0786037445	0.24
+    45	18.7882061008	0.24
+    46	12.1806020737	0.24
+    47	19.1326904297	0.24
+    48	24.0984668732	0.24
+    49	6.91787171347	0.24
+    50	3.11577796941	0.24
+    51	7.12806797032	0.24
+    52	25.3127174377	0.24
+    53	25.0570430755	0.24
+    54	20.4264535905	0.24
+    55	17.1519594193	0.24
+    56	24.1036224365	0.24
+    57	13.3320922853	0.24
+    58	12.2060456276	0.24
+    59	19.1577091217	0.24
+    60	24.1231822968	0.24
+    61	20.9011173249	0.24
+    62	24.5201377869	0.24
+    63	27.3786010742	0.24
+    64	25.3309621811	0.24
+    65	21.9172220231	0.24
+    66	16.8541679383	0.24
+    67	17.1702041626	0.24
+    68	24.0378637314	0.24
+    69	28.9433355331	0.24
+    70	12.2242903709	0.24
+    71	19.0919494629	0.24
+    72	23.997420311	0.24
+    73	11.6581001279	0.24
+    74	22.1203889848	0.24
+    75	33.1301021577	0.24
+    76	17.1068811416	0.24
+    77	15.254498482	0.24
+    78	15.8906025884	0.24
+    79	17.1265163422	0.24
+    80	24.0786037445	0.24
+    81	18.7882194522	0.24
+    82	12.1806020737	0.24
+    83	19.1326904297	0.24
+    84	24.0984668732	0.24
+    85	6.91787171347	0.24
+    86	3.11577796941	0.24
+    87	7.12806797032	0.24
+    88	25.3127174377	0.24
+    89	25.0570430755	0.24
+    90	20.4264535905	0.24
+    91	17.1519594193	0.24
+    92	24.1036224365	0.24
+    93	13.3320922853	0.24
+    94	12.2060456276	0.24
+    95	19.1577091217	0.24
+    96	24.1231822968	0.24
+    97	20.9011173249	0.24
+    98	24.5201377869	0.24
+    99	27.3786010742	0.24
+   100	25.3309621811	0.24
+   101	21.9172220231	0.24
+   102	16.8541679383	0.24
+   103	17.1702041626	0.24
+   104	24.0378637314	0.24
+   105	28.9433355331	0.24
+   106	12.2242903709	0.24
+   107	19.0919494629	0.24
+   108	23.997420311	0.24
+
+Measurement: vpeakall
+  step	MAX(V(out))	FROM	TO
+     1	45.044052124	0	0.25
+     2	51.9327011108	0	0.25
+     3	56.8143119812	0	0.25
+     4	33.4392280579	0	0.25
+     5	40.3900375366	0	0.25
+     6	45.3549041748	0	0.2499995
+     7	25.2784690857	0	0.25
+     8	32.2292785645	0	0.25
+     9	37.1941452026	0	0.25
+    10	20.3325557709	0	0.25
+    11	27.2833652496	0	0.25
+    12	32.2482299805	0	0.25
+    13	44.2801780701	0	0.25
+    14	50.5175209045	0	0.25
+    15	54.8074989319	0	0.25
+    16	32.6116752625	0	0.25
+    17	39.4418029785	0	0.25
+    18	44.3204650879	0	0.25
+    19	24.4509181976	0	0.25
+    20	31.2810440063	0	0.25
+    21	36.1597061157	0	0.25
+    22	19.5050048828	0	0.25
+    23	26.3351306915	0	0.25
+    24	31.2137928009	0	0.25
+    25	37.8972396851	0	0.25
+    26	43.7719116211	0	0.25
+    27	48.022026062	0	0.2499995
+    28	25.8605289459	0	0.25
+    29	32.1713180542	0	0.25
+    30	36.9291114807	0	0.25
+    31	17.6997699738	0	0.25
+    32	24.0446949005	0	0.25
+    33	28.9602909088	0	0.25
+    34	12.7538566589	0	0.25
+    35	19.0987815857	0	0.25
+    36	24.014377594	0	0.25
+    37	45.044052124	0	0.25
+    38	51.9327011108	0	0.25
+    39	56.8143119812	0	0.25
+    40	33.4392280579	0	0.25
+    41	40.3900375366	0	0.25
+    42	45.3549041748	0	0.2499995
+    43	25.2784690857	0	0.25
+    44	32.2292785645	0	0.25
+    45	37.1941452026	0	0.25
+    46	20.3325557709	0	0.25
+    47	27.2833652496	0	0.25
+    48	32.2482299805	0	0.25
+    49	44.2801780701	0	0.25
+    50	50.5175209045	0	0.25
+    51	54.8074989319	0	0.25
+    52	32.6116752625	0	0.25
+    53	39.4418029785	0	0.25
+    54	44.3204650879	0	0.25
+    55	24.4509181976	0	0.25
+    56	31.2810440063	0	0.25
+    57	36.1597061157	0	0.25
+    58	19.5050048828	0	0.25
+    59	26.3351306915	0	0.25
+    60	31.2137928009	0	0.25
+    61	37.8972396851	0	0.25
+    62	43.7719116211	0	0.25
+    63	48.022026062	0	0.2499995
+    64	25.8605289459	0	0.25
+    65	32.1713180542	0	0.25
+    66	36.9291114807	0	0.25
+    67	17.6997699738	0	0.25
+    68	24.0446949005	0	0.25
+    69	28.9602909088	0	0.25
+    70	12.7538566589	0	0.25
+    71	19.0987815857	0	0.25
+    72	24.014377594	0	0.25
+    73	45.044052124	0	0.25
+    74	51.9327011108	0	0.25
+    75	56.8143119812	0	0.25
+    76	33.4392280579	0	0.25
+    77	40.3900375366	0	0.25
+    78	45.3549041748	0	0.25
+    79	25.2784690857	0	0.25
+    80	32.2292785645	0	0.25
+    81	37.1941452026	0	0.25
+    82	20.3325557709	0	0.25
+    83	27.2833652496	0	0.25
+    84	32.2482299805	0	0.25
+    85	44.2801780701	0	0.25
+    86	50.5175209045	0	0.25
+    87	54.8074989319	0	0.25
+    88	32.6116752625	0	0.25
+    89	39.4418029785	0	0.25
+    90	44.3204650879	0	0.25
+    91	24.4509181976	0	0.25
+    92	31.2810440063	0	0.25
+    93	36.1597061157	0	0.25
+    94	19.5050048828	0	0.25
+    95	26.3351306915	0	0.25
+    96	31.2137928009	0	0.25
+    97	37.8972396851	0	0.25
+    98	43.7719116211	0	0.25
+    99	48.022026062	0	0.2499995
+   100	25.8605289459	0	0.25
+   101	32.1713180542	0	0.25
+   102	36.9291114807	0	0.25
+   103	17.6997699738	0	0.25
+   104	24.0446949005	0	0.25
+   105	28.9602909088	0	0.25
+   106	12.7538566589	0	0.25
+   107	19.0987815857	0	0.25
+   108	24.014377594	0	0.25
+
+Measurement: anycrowbar
+  step	'VPEAKALL>VCB'
+     1	1
+     2	1
+     3	1
+     4	1
+     5	1
+     6	1
+     7	1
+     8	1
+     9	1
+    10	1
+    11	1
+    12	1
+    13	1
+    14	1
+    15	1
+    16	1
+    17	1
+    18	1
+    19	1
+    20	1
+    21	1
+    22	1
+    23	1
+    24	1
+    25	1
+    26	1
+    27	1
+    28	1
+    29	1
+    30	1
+    31	0
+    32	1
+    33	1
+    34	0
+    35	1
+    36	1
+    37	1
+    38	1
+    39	1
+    40	1
+    41	1
+    42	1
+    43	1
+    44	1
+    45	1
+    46	1
+    47	1
+    48	1
+    49	1
+    50	1
+    51	1
+    52	1
+    53	1
+    54	1
+    55	1
+    56	1
+    57	1
+    58	1
+    59	1
+    60	1
+    61	1
+    62	1
+    63	1
+    64	1
+    65	1
+    66	1
+    67	0
+    68	1
+    69	1
+    70	0
+    71	1
+    72	1
+    73	1
+    74	1
+    75	1
+    76	1
+    77	1
+    78	1
+    79	1
+    80	1
+    81	1
+    82	1
+    83	1
+    84	1
+    85	1
+    86	1
+    87	1
+    88	1
+    89	1
+    90	1
+    91	1
+    92	1
+    93	1
+    94	1
+    95	1
+    96	1
+    97	1
+    98	1
+    99	1
+   100	1
+   101	1
+   102	1
+   103	0
+   104	1
+   105	1
+   106	0
+   107	1
+   108	1
